@@ -2,18 +2,26 @@ package dnkilic.anadoluajans.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.TimeZoneFormat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.security.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import dnkilic.anadoluajans.DetailActivity;
 import dnkilic.anadoluajans.MainActivity;
@@ -82,7 +90,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Picasso.with(context).load(dataset.get(position).getImage()).into(holder.ivImage);
+        Picasso.with(context)
+                .load(dataset.get(position).getImage())
+                .error(R.drawable.notfound)
+                .placeholder(R.drawable.loading)
+                .into(holder.ivImage);
         holder.tvDescription.setText(dataset.get(position).getDescription());
         holder.tvTitle.setText(dataset.get(position).getTitle());
         holder.tvPublishDate.setText(dataset.get(position).getPubDate());
@@ -94,6 +106,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public int getItemCount() {
         return dataset.size();
     }
+
+
 }
 
 
