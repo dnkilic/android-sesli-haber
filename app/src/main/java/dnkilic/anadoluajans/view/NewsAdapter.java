@@ -91,6 +91,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Picasso.with(context)
+
                 .load(dataset.get(position).getImage())
                 .error(R.drawable.notfound)
                 .placeholder(R.drawable.loading)
