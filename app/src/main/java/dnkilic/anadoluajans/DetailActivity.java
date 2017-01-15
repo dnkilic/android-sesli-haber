@@ -20,6 +20,10 @@ public class DetailActivity extends AppCompatActivity {
 
         String title = getIntent().getStringExtra("NEWS_TITLE");
 
+        if(getSupportActionBar() != null)
+        {
+            getSupportActionBar().setTitle(title);
+        }
 
         String url = getIntent().getStringExtra("NEWS_URL");
 
