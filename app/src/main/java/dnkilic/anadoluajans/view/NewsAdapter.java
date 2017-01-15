@@ -59,7 +59,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         Picasso.with(context).load(dataset.get(position).getImage()).into(holder.ivImage);
 
-        //.setImageResource();
         holder.tvDescription.setText(dataset.get(position).getDescription());
         holder.tvTitle.setText(dataset.get(position).getTitle());
         holder.tvPublishDate.setText(dataset.get(position).getPubDate());

@@ -97,6 +97,33 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     new RssFeedParser(this).execute("ekonomi");
                     break;
+                case 3:
+                    new RssFeedParser(this).execute("turkiye");
+                    break;
+                case 4:
+                    new RssFeedParser(this).execute("dunya");
+                    break;
+                case 5:
+                    new RssFeedParser(this).execute("kultur-sanat");
+                    break;
+                case 6:
+                    new RssFeedParser(this).execute("politika");
+                    break;
+                case 7:
+                    new RssFeedParser(this).execute("bilim-teknoloji");
+                    break;
+                case 8:
+                    new RssFeedParser(this).execute("yasam");
+                    break;
+                case 9:
+                    new RssFeedParser(this).execute("saglik");
+                    break;
+                case 10:
+                    new RssFeedParser(this).execute("analiz-haber");
+                    break;
+                case 11:
+                    new RssFeedParser(this).execute("gunun-basliklari");
+                    break;
             }
 
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
@@ -135,11 +162,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 12;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
+
             switch (position) {
                 case 0:
                     return "GÜNCEL";
@@ -147,6 +175,24 @@ public class MainActivity extends AppCompatActivity {
                     return "SPOR";
                 case 2:
                     return "EKONOMİ";
+                case 3:
+                    return "TÜRKİYE";
+                case 4:
+                    return "DÜNYA";
+                case 5:
+                    return "KÜLTÜR SANAT";
+                case 6:
+                    return "POLİTİKA";
+                case 7:
+                    return "BİLİM TEKNOLOJİ";
+                case 8:
+                    return "YAŞAM";
+                case 9:
+                    return "SAĞLIK";
+                case 10:
+                    return "ANALİZ HABER";
+                case 11:
+                    return "GÜNÜN BAŞLIKLARI";
             }
             return null;
         }
