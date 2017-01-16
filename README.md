@@ -50,7 +50,9 @@ picasso kütüphanesinin daha doğru kullanılması, resimlerin width bilgilerin
 http://square.github.io/picasso/
 
 
+
 HÜSAMETTİN	ERMİŞ
+
 async task isteği gönderildikten datalar gelene kadarki zaman'da progress bar gösterilmesi
 
 https://developer.android.com/reference/android/widget/ProgressBar.html
@@ -59,6 +61,7 @@ https://developer.android.com/reference/android/os/AsyncTask.html
 
 
 SEMİH	DİK
+
 Yukarı doğru swipe işlemi esnasında "anadolu ajansı" yazısısnın gizlenmesi, whatsapp'Daki gibi davranılması
 
 https://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling(part1)/
@@ -77,41 +80,71 @@ https://developer.android.com/guide/topics/ui/accessibility/index.html
 https://developer.android.com/training/accessibility/index.html
 
 SEDRETTİN	ÇALIŞKAN
+
 Application bar'a ses tanıma işlemini tetikletecek bir tuş konulması, tıklanması durumunda ses inputu alınması ve kullanıcı spor derse spora ekonomi derse ekonomi kısmına yönlendirilmesi
+
 https://developer.android.com/training/appbar/actions.html
+
 https://developer.android.com/reference/android/speech/SpeechRecognizer.html
+
 https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/recognition
 
+
 KÜBRA	ÖZSOY
+
 Uygulama ilk yüklendiği zaman çıkacak kullanımın anlatıldığı bir tutorial ekranı veya tutorial ekranları tasarımı, next tuşları vs
+
 https://developer.android.com/training/basics/data-storage/shared-preferences.html
+
 https://github.com/riggaroo/MaterialIntroTutorial
 
+
 DOĞUKAN	ARSLAN
+
 Her haberin yanında bir text to speech butonu, kullanıcnın bu butona basması durumunda haberin description'ının okunması, butona tekrar basılırsa tts durur, başka ekrana geçerse tts durur, uygulama kapatılırsa tts durur
+
 https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/speaker
+
 https://developer.android.com/training/material/lists-cards.html
 
+
 KÜBRA SEYHAN
+
 Tersine mühendisliği engellemek için proguard kurallarının oluşturulması, test edilmesi
+
 https://developer.android.com/studio/build/shrink-code.html
+
 https://www.mobilhanem.com/android-proguard-kullanimi-apk-guvenligi-apk-kucultme/
 
+
 YEŞİM	EROL
+
 Detay ekranının en üst tarafında meydana gelen görsel problemin çözülmesi
+
 Uygulamanın farklı ekran boyutlarındaki cihazlarda test edilmesi, bug varsa raporlanması
+
 https://developer.android.com/guide/topics/ui/themes.html
+
 https://developer.android.com/guide/topics/resources/style-resource.html
 
+
 İSMAİL	GÜNGÖR
+
 internetin olmadığı durumlarda kullanıcının bilgilendirilmesi diyalog şeklinde recycle view içerisine geelecek şekilde, async task ile işlem yapılmaması
+
 https://developer.android.com/training/basics/network-ops/connecting.html
+
 https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view
 
+
 ŞEBNEM SALİHA	ÇAKIROĞLU
+
 Haber kategorilerine yeni bir ekran eklenmesi "Radyo" adının verilmesi ve bu ekranda haber radyoları çalınması
 Radyolar recyle view'da listeleencek iconları vs güzel olacak.
+
 "http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"
+
 https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view
+
 https://developer.android.com/reference/android/media/MediaPlayer.html
 
