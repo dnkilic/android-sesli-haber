@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -53,7 +52,12 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
                 String image = element.getElementsByTagName("image").item(0).getFirstChild().getTextContent();
                 String pubDate = element.getElementsByTagName("pubDate").item(0).getFirstChild().getTextContent();
 
-                News news = new News(title, description, image, link, pubDate);
+                DateParser dateParser=new DateParser();
+                String tarih=dateParser.parse(pubDate);
+
+
+
+                News news = new News(title, description, image, link, tarih);
                 newsList.add(news);
             }
         } catch (MalformedURLException e) {
@@ -82,4 +86,5 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
             listener.onFail();
         }
     }
+
 }
