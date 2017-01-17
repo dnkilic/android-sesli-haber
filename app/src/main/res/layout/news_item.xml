@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -13,11 +12,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
-            android:id="@+id/ivImage"
-            android:layout_weight="1" />
+            android:id="@+id/ivImage"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,12 +46,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvPublishDate" />
+
         <View
-            android:layout_height="1px"
-            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
             android:background="@android:color/darker_gray"
             android:layout_marginTop="10dp"
-            />
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 

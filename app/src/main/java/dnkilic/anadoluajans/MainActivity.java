@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             mLayoutManager = new LinearLayoutManager(getContext());
             rvNews.setLayoutManager(mLayoutManager);
             dataset = new ArrayList<>();
-            adapter = new NewsAdapter(dataset, getContext());
+            adapter = new NewsAdapter(dataset, getActivity());
             rvNews.setAdapter(adapter);
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {

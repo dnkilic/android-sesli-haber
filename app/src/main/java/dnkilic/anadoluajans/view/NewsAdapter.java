@@ -1,8 +1,10 @@
 package dnkilic.anadoluajans.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +20,14 @@ import dnkilic.anadoluajans.data.News;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private ArrayList<News> dataset;
-    private Context context;
+    private Activity activity;
+    private DisplayMetrics metrics;
 
-    public NewsAdapter(ArrayList<News> dataset, Context context) {
+    public NewsAdapter(ArrayList<News> dataset, Activity activity) {
         this.dataset = dataset;
-        this.context = context;
+        this.activity = activity;
+        metrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,10 +51,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 public void onClick(View v) {
                     //Toast.makeText(context, link, Toast.LENGTH_SHORT).show();
                     //Chrome açılmalı
-                    Intent i = new Intent(context, DetailActivity.class);
+                    Intent i = new Intent(activity, DetailActivity.class);
                     i.putExtra("NEWS_TITLE", title);
                     i.putExtra("NEWS_URL", link);
-                    context.startActivity(i);
+                    activity.startActivity(i);
                 }
             });
         }
@@ -77,11 +82,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Picasso.with(context)
+
+
+        Picasso.with(activity)
                 .load(dataset.get(position).getImage())
                 .error(R.drawable.notfound)
                 .placeholder(R.drawable.loading)
+                .resize(metrics.widthPixels, 0)
                 .into(holder.ivImage);
+
+
+
         holder.tvDescription.setText(dataset.get(position).getDescription());
         holder.tvTitle.setText(dataset.get(position).getTitle());
         holder.tvPublishDate.setText(dataset.get(position).getPubDate());
