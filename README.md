@@ -45,9 +45,9 @@ https://firebase.google.com/docs/admob/android/quick-start
 
 ÇETİN	DEMİREL
 
-picasso kütüphanesinin daha doğru kullanılması, resimlerin width bilgilerinin match_parent olması, resimler yüklenirken place holder gösterilmesi, resmin yüklenememisi durumunda hata resminin göstrerilmesi
+<strike>picasso kütüphanesinin daha doğru kullanılması, resimlerin width bilgilerinin match_parent olması, resimler yüklenirken place holder gösterilmesi, resmin yüklenememisi durumunda hata resminin göstrerilmesi</strike>
 
-http://square.github.io/picasso/
+<strike>http://square.github.io/picasso </strike>
 
 
 
