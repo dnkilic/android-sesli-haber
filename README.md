@@ -62,13 +62,13 @@ https://developer.android.com/reference/android/os/AsyncTask.html
 
 SEMİH	DİK
 
-Yukarı doğru swipe işlemi esnasında "anadolu ajansı" yazısısnın gizlenmesi, whatsapp'Daki gibi davranılması
+<strike>Yukarı doğru swipe işlemi esnasında "anadolu ajansı" yazısısnın gizlenmesi, whatsapp'Daki gibi davranılması</strike>
 
-https://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling(part1)/
+<strike>https://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling(part1)/</strike>
 
-http://stackoverflow.com/questions/35967941/whatsapp-like-collapsing-toolbar
+<strike>http://stackoverflow.com/questions/35967941/whatsapp-like-collapsing-toolbar</strike>
 
-http://stackoverflow.com/questions/26539623/android-lollipop-toolbar-how-to-hide-show-the-toolbar-while-scrolling
+<strike>http://stackoverflow.com/questions/26539623/android-lollipop-toolbar-how-to-hide-show-the-toolbar-while-scrolling </strike>
 
 
 NERGİS	ŞİMŞEK
@@ -119,11 +119,11 @@ https://www.mobilhanem.com/android-proguard-kullanimi-apk-guvenligi-apk-kucultme
 
 YEŞİM	EROL
 
-Detay ekranının en üst tarafında meydana gelen görsel problemin çözülmesi
+<strike>Detay ekranının en üst tarafında meydana gelen görsel problemin çözülmesi</strike>
 
 Uygulamanın farklı ekran boyutlarındaki cihazlarda test edilmesi, bug varsa raporlanması
 
-https://developer.android.com/guide/topics/ui/themes.html
+<strike>https://developer.android.com/guide/topics/ui/themes.html</strike>
 
 https://developer.android.com/guide/topics/resources/style-resource.html
 
