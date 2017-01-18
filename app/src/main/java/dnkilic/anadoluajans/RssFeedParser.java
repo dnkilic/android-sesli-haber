@@ -52,12 +52,9 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
                 String image = element.getElementsByTagName("image").item(0).getFirstChild().getTextContent();
                 String pubDate = element.getElementsByTagName("pubDate").item(0).getFirstChild().getTextContent();
 
-                DateParser dateParser=new DateParser();
-                String tarih=dateParser.parse(pubDate);
+                String normalizedDate = DateParser.parse(pubDate);
 
-
-
-                News news = new News(title, description, image, link, tarih);
+                News news = new News(title, description, image, link, normalizedDate);
                 newsList.add(news);
             }
         } catch (MalformedURLException e) {

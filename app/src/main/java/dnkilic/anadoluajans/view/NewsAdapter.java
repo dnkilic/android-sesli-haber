@@ -88,9 +88,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 .load(dataset.get(position).getImage())
                 .error(R.drawable.notfound)
                 .placeholder(R.drawable.loading)
-                .resize(metrics.widthPixels, 0)
+                .fit().centerCrop()
                 .into(holder.ivImage);
-
 
 
         holder.tvDescription.setText(dataset.get(position).getDescription());
