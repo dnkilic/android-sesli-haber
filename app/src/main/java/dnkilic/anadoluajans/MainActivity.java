@@ -1,6 +1,7 @@
 package dnkilic.anadoluajans;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,9 +21,9 @@ import java.util.ArrayList;
 import dnkilic.anadoluajans.data.News;
 import dnkilic.anadoluajans.view.NewsAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-
+    private SwipeRefreshLayout swipeContainer;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
@@ -43,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(this);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeContainer.setRefreshing(false);
     }
 
     /**
