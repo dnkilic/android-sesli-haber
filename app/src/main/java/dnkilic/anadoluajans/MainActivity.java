@@ -1,5 +1,8 @@
 package dnkilic.anadoluajans;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +17,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         private RecyclerView.Adapter adapter;
         private RecyclerView.LayoutManager mLayoutManager;
         private ArrayList<News> dataset;
+        private ProgressBar progressBar;
 
         public PlaceholderFragment() {
         }
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
+
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             rvNews = (RecyclerView) rootView.findViewById(R.id.rvNews);
             mLayoutManager = new LinearLayoutManager(getContext());
@@ -86,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
             dataset = new ArrayList<>();
             adapter = new NewsAdapter(dataset, getActivity());
             rvNews.setAdapter(adapter);
+            progressBar = (ProgressBar) rootView.findViewById(R.id.pbQueryNews);
+
+            showProgress(true);
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
@@ -134,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onSuccess(ArrayList<News> news) {
+            showProgress(false);
+
             for(News item : news)
             {
                 dataset.add(item);
@@ -144,6 +155,19 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFail() {
+            showProgress(false);
+        }
+
+        private void showProgress(final boolean show) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+            progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+            progressBar.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+                    }
+            });
 
         }
     }
