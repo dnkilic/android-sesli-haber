@@ -1,6 +1,5 @@
 package dnkilic.anadoluajans.view;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +10,12 @@ import java.util.ArrayList;
 
 import dnkilic.anadoluajans.R;
 
-/**
- * Created by ismail on 1/23/2017.
- */
-
 public class DialogAdapter extends RecyclerView.Adapter<DialogAdapter.ViewHolder>{
 
     private ArrayList<Dialog> errorDialogList;
-    private Context context;
 
-    public DialogAdapter(ArrayList<Dialog> errorDialogList, Context context) {
+    public DialogAdapter(ArrayList<Dialog> errorDialogList) {
         this.errorDialogList = errorDialogList;
-        this.context = context;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
