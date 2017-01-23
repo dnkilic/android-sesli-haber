@@ -21,6 +21,8 @@ import dnkilic.anadoluajans.data.News;
 public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
 
     private NewsResultListener listener;
+    private boolean error;
+    private String errorMessage=" ";
 
     public RssFeedParser(NewsResultListener listener) {
         this.listener = listener;
@@ -57,16 +59,28 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
                 News news = new News(title, description, image, link, normalizedDate);
                 newsList.add(news);
             }
-        } catch (MalformedURLException e) {
+        }  catch (MalformedURLException e) {
+            error = true;
+            errorMessage = "Yasalbir protokol bulunamadı, hatalı bir URL oluştu!";
+            //Hatalı bir URL oluştuğunu belirtmek için fırlatırlır
+            //Yasal bir protokol bulunamadı yada stringler ayrıştırılamadı.
             e.printStackTrace();
         } catch (IOException e) {
+            error = true;
+            errorMessage = "Lütfen internet bağlantınızı kontrol ediniz! ";
+            //Internet Hatası
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
+            error = true;
+            errorMessage = "Yapılandırma hatası tespit edildi.Lütfen daha sonra tekrar deneyiniz!";
+            //Yapılandırma hatası.
             e.printStackTrace();
         } catch (SAXException e) {
+            error = true;
+            errorMessage = "Genel bir SAX hatası tespit edildi. Lütfen daha sonra tekrar deneyiniz!";
+            //Genel bir SAX hatası
             e.printStackTrace();
         }
-
         return newsList;
     }
 
@@ -80,7 +94,7 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
         }
         else
         {
-            listener.onFail();
+            listener.onFail(error,errorMessage);
         }
     }
 

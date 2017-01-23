@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import dnkilic.anadoluajans.data.News;
+import dnkilic.anadoluajans.view.Dialog;
+import dnkilic.anadoluajans.view.DialogAdapter;
 import dnkilic.anadoluajans.view.NewsAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         private RecyclerView rvNews;
-        private RecyclerView.Adapter adapter;
+        private RecyclerView.Adapter adapter, errorDialogAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
         private ArrayList<News> dataset;
+        private ArrayList<Dialog> errorDialogList;
+        private String commonError = "Bir hata oluştu. Lütfen tekrar deneyiniz";
 
         public PlaceholderFragment() {
         }
@@ -143,9 +147,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFail() {
+        public void onFail(boolean error, String errorMessage) {
+            errorDialogList = new ArrayList<>();
+
+            if (error){
+                Dialog errorDialog = new Dialog(errorMessage);
+                errorDialogList.add(errorDialog);
+                errorDialogAdapter = new DialogAdapter(errorDialogList,getContext());
+                rvNews.setAdapter(errorDialogAdapter);
+
+            }else{
+                Dialog errorDialog = new Dialog(commonError);
+                errorDialogList.add(errorDialog);
+                errorDialogAdapter = new DialogAdapter(errorDialogList,getContext());
+                rvNews.setAdapter(errorDialogAdapter);
+            }
+
 
         }
+
+
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

@@ -6,5 +6,5 @@ import dnkilic.anadoluajans.data.News;
 
 public interface NewsResultListener {
     void onSuccess(ArrayList<News> news);
-    void onFail();
+    void onFail(boolean error, String errorMessage);
 }
