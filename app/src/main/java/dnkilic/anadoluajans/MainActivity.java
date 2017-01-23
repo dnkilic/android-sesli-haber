@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private String deneme = "deneme deneme";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
