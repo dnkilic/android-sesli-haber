@@ -51,13 +51,13 @@ https://firebase.google.com/docs/admob/android/quick-start
 
 
 
-HÜSAMETTİN	ERMİŞ
+HÜSAMETTİN	ERMİŞ (listeye ismi eklenmeyecek)
 
-async task isteği gönderildikten datalar gelene kadarki zaman'da progress bar gösterilmesi
+<strike>async task isteği gönderildikten datalar gelene kadarki zaman'da progress bar gösterilmesi</strike>
 
-https://developer.android.com/reference/android/widget/ProgressBar.html
+<strike>https://developer.android.com/reference/android/widget/ProgressBar.html</strike>
 
-https://developer.android.com/reference/android/os/AsyncTask.html
+<strike>https://developer.android.com/reference/android/os/AsyncTask.html</strike>
 
 
 SEMİH	DİK
