@@ -79,6 +79,7 @@ https://developer.android.com/guide/topics/ui/accessibility/index.html
 
 https://developer.android.com/training/accessibility/index.html
 
+
 SEDRETTİN	ÇALIŞKAN
 
 Application bar'a ses tanıma işlemini tetikletecek bir tuş konulması, tıklanması durumunda ses inputu alınması ve kullanıcı spor derse spora ekonomi derse ekonomi kısmına yönlendirilmesi
@@ -121,20 +122,20 @@ YEŞİM	EROL
 
 <strike>Detay ekranının en üst tarafında meydana gelen görsel problemin çözülmesi</strike>
 
-Uygulamanın farklı ekran boyutlarındaki cihazlarda test edilmesi, bug varsa raporlanması
+<strike>Uygulamanın farklı ekran boyutlarındaki cihazlarda test edilmesi, bug varsa raporlanması</strike>
 
 <strike>https://developer.android.com/guide/topics/ui/themes.html</strike>
 
-https://developer.android.com/guide/topics/resources/style-resource.html
+<strike>https://developer.android.com/guide/topics/resources/style-resource.html</strike>
 
 
 İSMAİL	GÜNGÖR
 
-internetin olmadığı durumlarda kullanıcının bilgilendirilmesi diyalog şeklinde recycle view içerisine geelecek şekilde, async task ile işlem yapılmaması
+<strike>internetin olmadığı durumlarda kullanıcının bilgilendirilmesi diyalog şeklinde recycle view içerisine geelecek şekilde, async task ile işlem yapılmaması</strike>
 
-https://developer.android.com/training/basics/network-ops/connecting.html
+<strike>https://developer.android.com/training/basics/network-ops/connecting.html</strike>
 
-https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view
+<strike>https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view</strike>
 
 
 ŞEBNEM SALİHA	ÇAKIROĞLU
