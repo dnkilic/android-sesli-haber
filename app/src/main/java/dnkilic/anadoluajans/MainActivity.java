@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-    // deneme
+    // deneme 123
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
