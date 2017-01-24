@@ -29,7 +29,7 @@ BURCU	TOPÇU
 <strike>https://github.com/dnkilic/android-gictionary/tree/master/app/src/main/res (görsel içerik)</strike>
 
 
-ELİF	KURT
+ELİF	KURT (listeye ismi eklenmeyecek)
 
 uygulama içerisinde kullanılan renklerin değiştirilmesi, haberlerin pencere benzeri bir şey içerisine alınması, bütün görsel düzenlemeler, icon bulunması (yüksek çözünürlükte), anadolu ajansı haricinde bir isim bulunması verilmesi, yazı fontları vb'ni kapsayacak bütün görsel düzenlemeler. farklı tasarımlar sınıfın onayına sunulmalı
 Reklamların ayarlanması
