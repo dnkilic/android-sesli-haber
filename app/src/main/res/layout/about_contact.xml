@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@android:color/background_light">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:text="Bu uygulama Doğan Kılıç ve öğrencileri tarafından geliştirilmiştir."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:layout_weight="0.07" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="199dp"
+                            android:src="@drawable/dnkilic4"
+                            android:id="@+id/companyLogo" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:text="YÖNETİCİ: DOĞAN KILIÇ"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView2"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:background="#e0e0e0" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/textView35"
+                        android:gravity="center"
+                        android:layout_weight="0.3"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:text="FİGEN KARAHAN"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView34"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="ÇETİN DEMİREL"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView33"
+                        android:gravity="center"
+                        android:background="#e0e0e0"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="ÇAĞLA ERİŞ"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView32"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="HÜSAMETTİN ERMİŞ  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView31"
+                        android:gravity="center"
+                        android:background="#e0e0e0"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="BURCU TOPÇU  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView30"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="SEMİH DİK  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView29"
+                        android:gravity="center"
+                        android:background="#e0e0e0"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="ELİF KURT  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView28"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="SEDRETTİN ÇALIŞKAN  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView27"
+                        android:gravity="center"
+                        android:background="#e0e0e0"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="NERGİS ŞİMŞEK  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView26"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="DOĞUKAN ARSLAN  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView25"
+                        android:gravity="center"
+                        android:background="#e0e0e0"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="KÜBRA ÖZSOY "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView24"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="İSMAİL GÜNGÖR  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView23"
+                        android:gravity="center"
+                        android:background="#e0e0e0"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="KÜBRA SEYHAN  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView22"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="YEŞİM EROL  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView21"
+                        android:gravity="center"
+                        android:background="#e0e0e0"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:text="ŞEBNEM SALİHA ÇAKIROĞLU  "
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/textView20"
+                        android:gravity="center"
+                        android:background="#feca61"
+                        android:layout_weight="2" />
+
+                </LinearLayout>
+            </ScrollView>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>

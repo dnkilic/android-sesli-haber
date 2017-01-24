@@ -2,6 +2,7 @@ package dnkilic.anadoluajans;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,6 +17,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -33,8 +36,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-    // hello world!
-    // değişiklik yapınca mavi oldu bak main activity
+    /// gerekli dosyaları taşıdık, şimdi programmatik kısıma gelelim
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,21 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
        int position = mViewPager.getCurrentItem();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item) {
+        if(item.getItemId()== R.id.about) {
+            startActivity(new Intent(this, AboutContact.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
