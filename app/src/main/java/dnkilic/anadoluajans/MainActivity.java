@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
+    // hello world!
+    // değişiklik yapınca mavi oldu bak main activity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
