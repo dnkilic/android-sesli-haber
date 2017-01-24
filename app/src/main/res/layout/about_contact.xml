@@ -38,7 +38,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="199dp"
-                            android:src="@drawable/dnkilic4"
+                            android:src="@drawable/dnkilic"
                             android:id="@+id/companyLogo" />
                     </LinearLayout>
 

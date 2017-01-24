@@ -7,26 +7,26 @@ Yönetici, yürütücü, şikayet dinleyici, gerekirse programmatic destek, yoğ
 
 ÇAĞLA ERİŞ
 
-yukarıdan aşağı çekme hareketi yapıldığında yeni haber var mı göstermesi
+<strike>yukarıdan aşağı çekme hareketi yapıldığında yeni haber var mı göstermesi</strike>
 
-http://sapandiwakar.in/pull-to-refresh-for-android-recyclerview-or-any-other-vertically-scrolling-view/
+<strike>http://sapandiwakar.in/pull-to-refresh-for-android-recyclerview-or-any-other-vertically-scrolling-view/</strike>
 
-https://www.bignerdranch.com/blog/implementing-swipe-to-refresh/
+<strike>https://www.bignerdranch.com/blog/implementing-swipe-to-refresh/</strike>
 
-https://guides.codepath.com/android/Implementing-Pull-to-Refresh-Guide
+<strike>https://guides.codepath.com/android/Implementing-Pull-to-Refresh-Guide</strike>
 
 
 BURCU	TOPÇU
 
-hakkında ekranının tasarlanması - menu üzerinden hakkında ekranının açılabilmesi, hakkında ekranının içeriklerinin eklenmesi
+<strike>hakkında ekranının tasarlanması - menu üzerinden hakkında ekranının açılabilmesi, hakkında ekranının içeriklerinin eklenmesi</strike>
 
-https://developer.android.com/guide/topics/ui/menus.html
+<strike>https://developer.android.com/guide/topics/ui/menus.html</strike>
 
-http://stackoverflow.com/questions/39546152/how-to-make-the-three-dots-appear-in-the-android-toolbar
+<strike>http://stackoverflow.com/questions/39546152/how-to-make-the-three-dots-appear-in-the-android-toolbar</strike>
 
-https://github.com/dnkilic/android-gictionary
+<strike>https://github.com/dnkilic/android-gictionary</strike>
 
-https://github.com/dnkilic/android-gictionary/tree/master/app/src/main/res (görsel içerik)
+<strike>https://github.com/dnkilic/android-gictionary/tree/master/app/src/main/res (görsel içerik)</strike>
 
 
 ELİF	KURT

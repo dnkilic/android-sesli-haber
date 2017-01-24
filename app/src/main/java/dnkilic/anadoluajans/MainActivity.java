@@ -3,7 +3,6 @@ package dnkilic.anadoluajans;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
-import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -30,13 +29,11 @@ import dnkilic.anadoluajans.view.Dialog;
 import dnkilic.anadoluajans.view.DialogAdapter;
 import dnkilic.anadoluajans.view.NewsAdapter;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity  {
 
-    private SwipeRefreshLayout swipeContainer;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-    /// gerekli dosyaları taşıdık, şimdi programmatik kısıma gelelim
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +52,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-        swipeContainer.setOnRefreshListener(this);
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-    }
-
-    @Override
-    public void onRefresh() {
-        swipeContainer.setRefreshing(false);
-
-
-       int position = mViewPager.getCurrentItem();
 
     }
 
@@ -81,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         if(item.getItemId()== R.id.about) {
-            startActivity(new Intent(this, AboutContact.class));
+            startActivity(new Intent(this, AboutActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -90,13 +73,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment implements NewsResultListener {
+    public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+        private SwipeRefreshLayout swipeContainer;
         private RecyclerView rvNews;
         private RecyclerView.Adapter adapter,errorDialogAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
@@ -104,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         private ArrayList<Dialog> errorDialogList;
         private ProgressBar progressBar;
         private String commonError = "Bir hata oluştu. Lütfen tekrar deneyiniz";
-
 
         public PlaceholderFragment() {
         }
@@ -127,6 +110,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+
+            swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
+            swipeContainer.setOnRefreshListener(this);
+            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+
             rvNews = (RecyclerView) rootView.findViewById(R.id.rvNews);
             mLayoutManager = new LinearLayoutManager(getContext());
             rvNews.setLayoutManager(mLayoutManager);
@@ -186,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         @Override
         public void onSuccess(ArrayList<News> news) {
             showProgress(false);
+            swipeContainer.setRefreshing(false);
 
             for(News item : news)
             {
@@ -199,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         public void onFail(boolean error, String errorMessage) {
             errorDialogList = new ArrayList<>();
             showProgress(false);
+            swipeContainer.setRefreshing(false);
             if (error){
                 Dialog errorDialog = new Dialog(errorMessage);
                 errorDialogList.add(errorDialog);
@@ -224,6 +218,48 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     }
             });
 
+        }
+
+        @Override
+        public void onRefresh() {
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
+                case 0:
+                    new RssFeedParser(this).execute("guncel");
+                    break;
+                case 1:
+                    new RssFeedParser(this).execute("spor");
+                    break;
+                case 2:
+                    new RssFeedParser(this).execute("ekonomi");
+                    break;
+                case 3:
+                    new RssFeedParser(this).execute("turkiye");
+                    break;
+                case 4:
+                    new RssFeedParser(this).execute("dunya");
+                    break;
+                case 5:
+                    new RssFeedParser(this).execute("kultur-sanat");
+                    break;
+                case 6:
+                    new RssFeedParser(this).execute("politika");
+                    break;
+                case 7:
+                    new RssFeedParser(this).execute("bilim-teknoloji");
+                    break;
+                case 8:
+                    new RssFeedParser(this).execute("yasam");
+                    break;
+                case 9:
+                    new RssFeedParser(this).execute("saglik");
+                    break;
+                case 10:
+                    new RssFeedParser(this).execute("analiz-haber");
+                    break;
+                case 11:
+                    new RssFeedParser(this).execute("gunun-basliklari");
+                    break;
+            }
         }
     }
 

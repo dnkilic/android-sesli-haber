@@ -5,10 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 
-/**
- * Created by burcu on 19.1.2017.
- */
-public class AboutContact extends Activity{
+public class AboutActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +29,7 @@ public class AboutContact extends Activity{
         textView32= (TextView) findViewById(R.id.textView32);
         textView33= (TextView) findViewById(R.id.textView33);
         textView34= (TextView) findViewById(R.id.textView34);
-        Typeface face=Typeface.createFromAsset(getAssets(),"Fonts/Asimov.ttf");
+        Typeface face=Typeface.createFromAsset(getAssets(),"Asimov.ttf");
         textView2.setTypeface(face);
         textView20.setTypeface(face);
         textView21.setTypeface(face);
