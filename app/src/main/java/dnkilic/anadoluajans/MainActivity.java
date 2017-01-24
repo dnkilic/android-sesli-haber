@@ -166,13 +166,13 @@ public class MainActivity extends AppCompatActivity {
             if (error){
                 Dialog errorDialog = new Dialog(errorMessage);
                 errorDialogList.add(errorDialog);
-                errorDialogAdapter = new DialogAdapter(errorDialogList,getContext());
+                errorDialogAdapter = new DialogAdapter(errorDialogList);
                 rvNews.setAdapter(errorDialogAdapter);
 
             }else{
                 Dialog errorDialog = new Dialog(commonError);
                 errorDialogList.add(errorDialog);
-                errorDialogAdapter = new DialogAdapter(errorDialogList,getContext());
+                errorDialogAdapter = new DialogAdapter(errorDialogList);
                 rvNews.setAdapter(errorDialogAdapter);
             }
         }
