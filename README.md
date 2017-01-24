@@ -51,13 +51,13 @@ https://firebase.google.com/docs/admob/android/quick-start
 
 
 
-HÜSAMETTİN	ERMİŞ
+HÜSAMETTİN	ERMİŞ (listeye ismi eklenmeyecek)
 
-async task isteği gönderildikten datalar gelene kadarki zaman'da progress bar gösterilmesi
+<strike>async task isteği gönderildikten datalar gelene kadarki zaman'da progress bar gösterilmesi</strike>
 
-https://developer.android.com/reference/android/widget/ProgressBar.html
+<strike>https://developer.android.com/reference/android/widget/ProgressBar.html</strike>
 
-https://developer.android.com/reference/android/os/AsyncTask.html
+<strike>https://developer.android.com/reference/android/os/AsyncTask.html</strike>
 
 
 SEMİH	DİK
@@ -78,6 +78,7 @@ Uygulamanın erişilebilir hale getirilmesi, talkback ile test edilmesi kör kul
 https://developer.android.com/guide/topics/ui/accessibility/index.html
 
 https://developer.android.com/training/accessibility/index.html
+
 
 SEDRETTİN	ÇALIŞKAN
 
@@ -121,20 +122,20 @@ YEŞİM	EROL
 
 <strike>Detay ekranının en üst tarafında meydana gelen görsel problemin çözülmesi</strike>
 
-Uygulamanın farklı ekran boyutlarındaki cihazlarda test edilmesi, bug varsa raporlanması
+<strike>Uygulamanın farklı ekran boyutlarındaki cihazlarda test edilmesi, bug varsa raporlanması</strike>
 
 <strike>https://developer.android.com/guide/topics/ui/themes.html</strike>
 
-https://developer.android.com/guide/topics/resources/style-resource.html
+<strike>https://developer.android.com/guide/topics/resources/style-resource.html</strike>
 
 
 İSMAİL	GÜNGÖR
 
-internetin olmadığı durumlarda kullanıcının bilgilendirilmesi diyalog şeklinde recycle view içerisine geelecek şekilde, async task ile işlem yapılmaması
+<strike>internetin olmadığı durumlarda kullanıcının bilgilendirilmesi diyalog şeklinde recycle view içerisine geelecek şekilde, async task ile işlem yapılmaması</strike>
 
-https://developer.android.com/training/basics/network-ops/connecting.html
+<strike>https://developer.android.com/training/basics/network-ops/connecting.html</strike>
 
-https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view
+<strike>https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view</strike>
 
 
 ŞEBNEM SALİHA	ÇAKIROĞLU
