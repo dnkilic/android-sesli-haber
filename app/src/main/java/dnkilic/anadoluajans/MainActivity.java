@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-    // deneme 123
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
         swipeContainer.setRefreshing(false);
+
+
+       int position = mViewPager.getCurrentItem();
+
     }
 
     /**
