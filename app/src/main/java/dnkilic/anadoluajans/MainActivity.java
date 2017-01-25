@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity  {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +41,13 @@ public class MainActivity extends AppCompatActivity  {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
     }
 
     @Override
@@ -70,14 +65,8 @@ public class MainActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
+
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         private SwipeRefreshLayout swipeContainer;
@@ -87,15 +76,10 @@ public class MainActivity extends AppCompatActivity  {
         private ArrayList<News> dataset;
         private ArrayList<Dialog> errorDialogList;
         private ProgressBar progressBar;
-        private String commonError = "Bir hata oluştu. Lütfen tekrar deneyiniz";
 
         public PlaceholderFragment() {
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -105,12 +89,9 @@ public class MainActivity extends AppCompatActivity  {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
 
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
             swipeContainer.setOnRefreshListener(this);
@@ -130,6 +111,12 @@ public class MainActivity extends AppCompatActivity  {
 
             showProgress(true);
 
+            makeNewsRequest();
+
+            return rootView;
+        }
+
+        private void makeNewsRequest() {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
                     new RssFeedParser(this).execute("guncel");
@@ -168,11 +155,6 @@ public class MainActivity extends AppCompatActivity  {
                     new RssFeedParser(this).execute("gunun-basliklari");
                     break;
             }
-
-            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            //textView.setText(getString(R.string.section_format, ));
-
-            return rootView;
         }
 
         @Override
@@ -193,14 +175,17 @@ public class MainActivity extends AppCompatActivity  {
             errorDialogList = new ArrayList<>();
             showProgress(false);
             swipeContainer.setRefreshing(false);
-            if (error){
+
+            if (error)
+            {
                 Dialog errorDialog = new Dialog(errorMessage);
                 errorDialogList.add(errorDialog);
                 errorDialogAdapter = new DialogAdapter(errorDialogList);
                 rvNews.setAdapter(errorDialogAdapter);
 
-            }else{
-                Dialog errorDialog = new Dialog(commonError);
+            }else
+            {
+                Dialog errorDialog = new Dialog(getString(R.string.common_error));
                 errorDialogList.add(errorDialog);
                 errorDialogAdapter = new DialogAdapter(errorDialogList);
                 rvNews.setAdapter(errorDialogAdapter);
@@ -217,49 +202,11 @@ public class MainActivity extends AppCompatActivity  {
                     public void onAnimationEnd(Animator animation) {progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
                     }
             });
-
         }
 
         @Override
         public void onRefresh() {
-            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case 0:
-                    new RssFeedParser(this).execute("guncel");
-                    break;
-                case 1:
-                    new RssFeedParser(this).execute("spor");
-                    break;
-                case 2:
-                    new RssFeedParser(this).execute("ekonomi");
-                    break;
-                case 3:
-                    new RssFeedParser(this).execute("turkiye");
-                    break;
-                case 4:
-                    new RssFeedParser(this).execute("dunya");
-                    break;
-                case 5:
-                    new RssFeedParser(this).execute("kultur-sanat");
-                    break;
-                case 6:
-                    new RssFeedParser(this).execute("politika");
-                    break;
-                case 7:
-                    new RssFeedParser(this).execute("bilim-teknoloji");
-                    break;
-                case 8:
-                    new RssFeedParser(this).execute("yasam");
-                    break;
-                case 9:
-                    new RssFeedParser(this).execute("saglik");
-                    break;
-                case 10:
-                    new RssFeedParser(this).execute("analiz-haber");
-                    break;
-                case 11:
-                    new RssFeedParser(this).execute("gunun-basliklari");
-                    break;
-            }
+            makeNewsRequest();
         }
     }
 
@@ -276,7 +223,6 @@ public class MainActivity extends AppCompatActivity  {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 12;
         }
 
