@@ -16,8 +16,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-
-
         String title = getIntent().getStringExtra("NEWS_TITLE");
 
         if(getSupportActionBar() != null)
