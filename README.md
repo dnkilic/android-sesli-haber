@@ -102,11 +102,11 @@ https://github.com/riggaroo/MaterialIntroTutorial
 
 DOĞUKAN	ARSLAN
 
-Her haberin yanında bir text to speech butonu, kullanıcnın bu butona basması durumunda haberin description'ının okunması, butona tekrar basılırsa tts durur, başka ekrana geçerse tts durur, uygulama kapatılırsa tts durur
+<strike>Her haberin yanında bir text to speech butonu, kullanıcnın bu butona basması durumunda haberin description'ının okunması, butona tekrar basılırsa tts durur, başka ekrana geçerse tts durur, uygulama kapatılırsa tts durur</strike>
 
-https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/speaker
+<strike>https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/speaker</strike>
 
-https://developer.android.com/training/material/lists-cards.html
+<strike>https://developer.android.com/training/material/lists-cards.html</strike>
 
 
 KÜBRA SEYHAN
