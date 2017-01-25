@@ -21,24 +21,36 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import dnkilic.anadoluajans.data.News;
 import dnkilic.anadoluajans.view.Dialog;
 import dnkilic.anadoluajans.view.DialogAdapter;
 import dnkilic.anadoluajans.view.NewsAdapter;
 
+import static dnkilic.anadoluajans.MainActivity.newsMap;
+
 public class MainActivity extends AppCompatActivity  {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
+    private Speaker speakerManager;
+    private static ArrayList<News> titleListStable = new ArrayList<>();
+    private Menu menu;
+    public static HashMap<String, ArrayList<News>> newsMap = new HashMap<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        speakerManager = new Speaker(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,15 +61,115 @@ public class MainActivity extends AppCompatActivity  {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                if(speakerManager != null)
+                {
+                    speakerManager.stop();
+                    menu.getItem(1).setIcon(R.drawable.speaker_on);
+                }
+
+                ArrayList<News> titleList;
+
+                for(Map.Entry<String, ArrayList<News>> entry : newsMap.entrySet()) {
+                    String key = entry.getKey();
+                    int keyInt = 0;
+
+                    switch (key) {
+                        case "guncel":
+                            keyInt = 0;
+                            break;
+                        case "spor":
+                            keyInt = 1;
+                            break;
+                        case "ekonomi":
+                            keyInt = 2;
+                            break;
+                        case "turkiye":
+                            keyInt = 3;
+                            break;
+                        case "dunya":
+                            keyInt = 4;
+                            break;
+                        case "kultur-sanat":
+                            keyInt = 5;
+                            break;
+                        case "politika":
+                            keyInt = 6;
+                            break;
+                        case "bilim-teknoloji":
+                            keyInt = 7;
+                            break;
+                        case "yasam":
+                            keyInt = 8;
+                            break;
+                        case "saglik":
+                            keyInt = 9;
+                            break;
+                        case "analiz-haber":
+                            keyInt = 10;
+                            break;
+                        case "gunun-basliklari":
+                            keyInt = 11;
+                            break;
+                    }
+
+                    if (position == keyInt) {
+                        titleList = entry.getValue();
+
+                        titleListStable = titleList;
+                        break;
+                    }
+                }
+            }
+
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(speakerManager != null)
+        {
+            speakerManager.stop();
+            menu.getItem(1).setIcon(R.drawable.speaker_on);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if(speakerManager != null)
+        {
+            speakerManager.stop();
+            menu.getItem(1).setIcon(R.drawable.speaker_on);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        this.menu = menu;
         return true;
     }
 
@@ -66,9 +178,24 @@ public class MainActivity extends AppCompatActivity  {
         if(item.getItemId()== R.id.about) {
             startActivity(new Intent(this, AboutActivity.class));
             return true;
+        }else if(item.getItemId()==R.id.speakerButton){
+            if(speakerManager.isSpeaking()){
+                speakerManager.stop();
+                menu.getItem(1).setIcon(R.drawable.speaker_on);
+            }else{
+                menu.getItem(1).setIcon(R.drawable.speaker_off);
+                for(News i: titleListStable){
+                    String title = i.getTitle();
+
+                    speakerManager.speak(title);
+                }
+            }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     /**
      * A placeholder fragment containing a simple view.
@@ -88,6 +215,7 @@ public class MainActivity extends AppCompatActivity  {
         private ArrayList<Dialog> errorDialogList;
         private ProgressBar progressBar;
         private String commonError = "Bir hata oluştu. Lütfen tekrar deneyiniz";
+
 
         public PlaceholderFragment() {
         }
@@ -169,6 +297,7 @@ public class MainActivity extends AppCompatActivity  {
                     break;
             }
 
+
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             //textView.setText(getString(R.string.section_format, ));
 
@@ -179,13 +308,17 @@ public class MainActivity extends AppCompatActivity  {
         public void onSuccess(ArrayList<News> news) {
             showProgress(false);
             swipeContainer.setRefreshing(false);
+            String tabNum ="";
 
             for(News item : news)
             {
+                tabNum = item.getCategory();
                 dataset.add(item);
             }
-
+            newsMap.put(tabNum, dataset);
             adapter.notifyDataSetChanged();
+
+
         }
 
         @Override

@@ -7,13 +7,15 @@ public class News {
     private String image;
     private String link;
     private String pubDate;
+    private String category;
 
-    public News(String title, String description, String image, String link, String pubDate) {
+    public News(String title, String description, String image, String link, String pubDate, String category) {
         this.title = title;
         this.description = description;
         this.image = image;
         this.link = link;
         this.pubDate = pubDate;
+        this.category = category;
     }
 
     public String getTitle() {
@@ -35,4 +37,6 @@ public class News {
     public String getPubDate() {
         return pubDate;
     }
+
+    public String getCategory(){ return category;}
 }

@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -56,12 +58,12 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
 
                 String normalizedDate = DateParser.parse(pubDate);
 
-                News news = new News(title, description, image, link, normalizedDate);
+                News news = new News(title, description, image, link, normalizedDate, selectedCategory);
                 newsList.add(news);
             }
         }  catch (MalformedURLException e) {
             error = true;
-            errorMessage = "Yasalbir protokol bulunamadı, hatalı bir URL oluştu!";
+            errorMessage = "Yasal bir protokol bulunamadı, hatalı bir URL oluştu!";
             //Hatalı bir URL oluştuğunu belirtmek için fırlatırlır
             //Yasal bir protokol bulunamadı yada stringler ayrıştırılamadı.
             e.printStackTrace();
