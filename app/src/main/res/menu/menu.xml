@@ -3,17 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/about"
-        android:orderInCategory="0"
-        app:showAsAction="always"
-        android:onClick="onOptionsItemSelected"
-        android:icon="@drawable/ic_fingerprint"
-        />
-    <item
-        android:id="@+id/speakerButton"
         android:orderInCategory="1"
         app:showAsAction="always"
         android:onClick="onOptionsItemSelected"
-        android:icon="@drawable/speaker_on"
-        />
+        android:icon="@mipmap/ic_fingerprint" />
 
+    <item
+        android:id="@+id/speakerButton"
+        android:orderInCategory="0"
+        app:showAsAction="always"
+        android:onClick="onOptionsItemSelected"
+        android:icon="@mipmap/ic_speaker_on" />
 </menu>
