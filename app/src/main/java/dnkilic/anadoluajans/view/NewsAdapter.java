@@ -1,7 +1,6 @@
 package dnkilic.anadoluajans.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -10,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+
 import dnkilic.anadoluajans.DetailActivity;
-import dnkilic.anadoluajans.MainActivity;
 import dnkilic.anadoluajans.R;
 import dnkilic.anadoluajans.data.News;
 
@@ -38,6 +39,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         TextView tvPublishDate;
         String link;
         String title;
+        ImageView shareButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -45,6 +47,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             tvDescription = (TextView) v.findViewById(R.id.tvDescription);
             tvTitle = (TextView) v.findViewById(R.id.tvTitle);
             tvPublishDate = (TextView) v.findViewById(R.id.tvPublishDate);
+
+            shareButton=(ImageView) v.findViewById(R.id.shareButton);
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    sharingIntent.setType("text/plain");
+                    String shareBody = title + " - " + link + " via AA";
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Bu haberi okumalısın:");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                    activity.startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                }
+            });
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,11 +1,14 @@
 package dnkilic.anadoluajans;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -30,6 +33,10 @@ public class DetailActivity extends AppCompatActivity {
         WebSettings webSettings = wvNews.getSettings();
         webSettings.setJavaScriptEnabled(true);
         wvNews.loadUrl(url);
+
+        AdView adView = (AdView) this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest); //adView i yüklüyoruz
     }
 
     @Override
