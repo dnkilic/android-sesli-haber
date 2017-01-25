@@ -49,8 +49,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Toast.makeText(context, link, Toast.LENGTH_SHORT).show();
-                    //Chrome açılmalı
                     Intent i = new Intent(activity, DetailActivity.class);
                     i.putExtra("NEWS_TITLE", title);
                     i.putExtra("NEWS_URL", link);

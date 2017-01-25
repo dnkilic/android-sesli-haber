@@ -164,10 +164,26 @@ public class MainActivity extends AppCompatActivity  {
 
             for(News item : news)
             {
-                dataset.add(item);
+                if(!isNewsDuplicate(item, dataset))
+                {
+                    dataset.add(item);
+                }
             }
 
             adapter.notifyDataSetChanged();
+        }
+
+        private boolean isNewsDuplicate(News news, ArrayList<News> currentNews)
+        {
+            for(News current : currentNews)
+            {
+                if(news.getId().equals(current.getId()))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         @Override
@@ -191,6 +207,7 @@ public class MainActivity extends AppCompatActivity  {
                 rvNews.setAdapter(errorDialogAdapter);
             }
         }
+
 
         private void showProgress(final boolean show) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);

@@ -1,6 +1,7 @@
 package dnkilic.anadoluajans;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -53,10 +54,11 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
                 String title = element.getElementsByTagName("title").item(0).getFirstChild().getTextContent();
                 String image = element.getElementsByTagName("image").item(0).getFirstChild().getTextContent();
                 String pubDate = element.getElementsByTagName("pubDate").item(0).getFirstChild().getTextContent();
+                String id = element.getElementsByTagName("guid").item(0).getFirstChild().getTextContent();
 
                 String normalizedDate = DateParser.parse(pubDate);
 
-                News news = new News(title, description, image, link, normalizedDate);
+                News news = new News(id, title, description, image, link, normalizedDate);
                 newsList.add(news);
             }
         }  catch (MalformedURLException e) {

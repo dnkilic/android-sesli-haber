@@ -7,8 +7,10 @@ public class News {
     private String image;
     private String link;
     private String pubDate;
+    private String id;
 
-    public News(String title, String description, String image, String link, String pubDate) {
+    public News(String id, String title, String description, String image, String link, String pubDate) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.image = image;
@@ -34,5 +36,9 @@ public class News {
 
     public String getPubDate() {
         return pubDate;
+    }
+
+    public String getId() {
+        return id;
     }
 }
