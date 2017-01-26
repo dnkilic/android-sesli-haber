@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Selam ben kübra
+        //öbür projede birşeyler bozulmuş, update edilmiyor artık, bakalım burada commit yapabilecek miyiz
+
         speakerManager = new Speaker(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
