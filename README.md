@@ -31,8 +31,14 @@ BURCU	TOPÇU
 
 ELİF	KURT (listeye ismi eklenmeyecek)
 
-uygulama içerisinde kullanılan renklerin değiştirilmesi, haberlerin pencere benzeri bir şey içerisine alınması, bütün görsel düzenlemeler, icon bulunması (yüksek çözünürlükte), anadolu ajansı haricinde bir isim bulunması verilmesi, yazı fontları vb'ni kapsayacak bütün görsel düzenlemeler. farklı tasarımlar sınıfın onayına sunulmalı
-Reklamların ayarlanması
+uygulama içerisinde kullanılan renklerin değiştirilmesi,
+haberlerin pencere benzeri bir şey içerisine alınması,
+bütün görsel düzenlemeler,
+icon bulunması (yüksek çözünürlükte),
+<strike>anadolu ajansı haricinde bir isim bulunması verilmesi,</strike>
+yazı fontları vb'ni kapsayacak bütün görsel düzenlemeler.
+farklı tasarımlar sınıfın onayına sunulmalı
+<strike>Reklamların ayarlanması</strike>
 
 https://material.io/guidelines/
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Anadolu Ajansı</string>
+    <string name="app_name">Sesli Haber</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="common_error">Bir hata oluştu. Lütfen tekrar deneyiniz.</string>

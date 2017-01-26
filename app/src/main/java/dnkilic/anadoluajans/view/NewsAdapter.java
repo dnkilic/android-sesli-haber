@@ -39,7 +39,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         TextView tvPublishDate;
         String link;
         String title;
-        ImageView shareButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -47,19 +46,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             tvDescription = (TextView) v.findViewById(R.id.tvDescription);
             tvTitle = (TextView) v.findViewById(R.id.tvTitle);
             tvPublishDate = (TextView) v.findViewById(R.id.tvPublishDate);
-
-            shareButton=(ImageView) v.findViewById(R.id.shareButton);
-            shareButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-                    String shareBody = title + " - " + link + " via AA";
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Bu haberi okumalısın:");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                    activity.startActivity(Intent.createChooser(sharingIntent, "Share via"));
-                }
-            });
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -116,8 +102,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public int getItemCount() {
         return dataset.size();
     }
-
-
 }
 
 

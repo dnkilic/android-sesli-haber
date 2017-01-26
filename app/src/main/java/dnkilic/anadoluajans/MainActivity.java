@@ -308,7 +308,6 @@ public class MainActivity extends AppCompatActivity  {
                     public void onAnimationEnd(Animator animation) {progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
                     }
             });
-
         }
 
         @Override

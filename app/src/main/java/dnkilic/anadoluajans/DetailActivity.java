@@ -36,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
 
         AdView adView = (AdView) this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest); //adView i yüklüyoruz
+        adView.loadAd(adRequest);
     }
 
     @Override
