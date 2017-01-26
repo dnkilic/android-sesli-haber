@@ -4,10 +4,10 @@
     <color name="colorPrimaryDark">#9e2020</color>
     <color name="colorAccent">#ffffff</color>
 
-    <color name="colorAboutBackground">#8340ff</color>
-    <color name="colorAboutPrimary">#983fb5</color>
-    <color name="colorAboutPrimaryDark">#64309f</color>
-    <color name="colorAboutAccent">#9940ff</color>
+    <color name="colorAboutBackground">#ab201e</color>
+    <color name="colorAboutPrimary">#9e2020</color>
+    <color name="colorAboutPrimaryDark">#9e2020</color>
+    <color name="colorAboutAccent">#9e2020</color>
 
     <color name="colorDetailBackground">#191d50</color>
     <color name="colorDetailPrimary">#191d50</color>
