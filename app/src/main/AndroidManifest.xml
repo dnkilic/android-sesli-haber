@@ -25,7 +25,7 @@
         <activity android:name="dnkilic.seslihaber.AboutActivity" android:theme="@style/AboutTheme" />
         <activity android:name="za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".Settings" android:theme="@style/SettingsTheme" ></activity>
+        <activity android:name=".SettingsActivity" android:theme="@style/SettingsTheme" ></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
@@ -41,9 +40,9 @@ import dnkilic.seslihaber.view.NewsAdapter;
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
-public class MainActivity extends AppCompatActivity implements OnSharedPreferenceChangeListener {
+public class MainActivity extends AppCompatActivity  {
 
-    private static final int REQUEST_CODE = 1234;
+    private static final int REQUEST_CODE = 1001;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -53,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements OnSharedPreferenc
     private Menu menu;
     public static HashMap<Integer, ArrayList<News>> newsMap = new HashMap<>();
 
-    private boolean introState;
-    SharedPreferences settings;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +59,7 @@ public class MainActivity extends AppCompatActivity implements OnSharedPreferenc
 
         loadTutorial();
 
-
         speakerManager = new Speaker(this);
-        settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -98,15 +92,22 @@ public class MainActivity extends AppCompatActivity implements OnSharedPreferenc
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        getSettings();
     }
 
     public void loadTutorial() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        boolean firstLaunch = sharedPref.getBoolean("prefFirstLaunch", true);
 
-        Intent mainAct = new Intent(this, MaterialTutorialActivity.class);
-        mainAct.putParcelableArrayListExtra(MaterialTutorialActivity.MATERIAL_TUTORIAL_ARG_TUTORIAL_ITEMS, getTutorialItems(this));
-        startActivityForResult(mainAct, REQUEST_CODE);
+        if(firstLaunch)
+        {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("prefFirstLaunch", false);
+            editor.apply();
+
+            Intent mainAct = new Intent(this, MaterialTutorialActivity.class);
+            mainAct.putParcelableArrayListExtra(MaterialTutorialActivity.MATERIAL_TUTORIAL_ARG_TUTORIAL_ITEMS, getTutorialItems(this));
+            startActivityForResult(mainAct, REQUEST_CODE);
+        }
     }
 
     private ArrayList<TutorialItem> getTutorialItems(Context context) {
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements OnSharedPreferenc
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //    super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE){
             Toast.makeText(this, "Tutorial finished", Toast.LENGTH_LONG).show();
         }
@@ -159,7 +160,11 @@ public class MainActivity extends AppCompatActivity implements OnSharedPreferenc
         if(speakerManager != null)
         {
             speakerManager.stop();
-            menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+
+            if(menu != null)
+            {
+                menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+            }
         }
     }
 
@@ -195,7 +200,10 @@ public class MainActivity extends AppCompatActivity implements OnSharedPreferenc
 
                 if(titleList != null && !titleList.isEmpty())
                 {
-                    if(introState) {
+                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    boolean isIntroEnabled = sharedPref.getBoolean("prefIntro", true);
+
+                    if(isIntroEnabled) {
                         speakerManager.play("[intro]");
                     }
 
@@ -207,21 +215,11 @@ public class MainActivity extends AppCompatActivity implements OnSharedPreferenc
                 }
             }
             return true;
-        }else if (item.getItemId()==R.id.mSettings){
-            Intent intent = new Intent(this,Settings.class);
+        } else if (item.getItemId() == R.id.settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-       getSettings();
-    }
-
-    public void getSettings(){
-        introState = settings.getBoolean("intro",true);
-        settings.registerOnSharedPreferenceChangeListener(MainActivity.this);
     }
 
     public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener {

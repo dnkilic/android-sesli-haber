@@ -15,10 +15,10 @@
         android:onClick="onOptionsItemSelected"
         android:icon="@mipmap/ic_speaker_on" />
     <item
-        android:id="@+id/mSettings"
+        android:id="@+id/settings"
         app:showAsAction="always"
         android:orderInCategory="1"
-        android:icon="@android:drawable/ic_menu_preferences"
+        android:icon="@mipmap/ic_settings"
         />
 
 

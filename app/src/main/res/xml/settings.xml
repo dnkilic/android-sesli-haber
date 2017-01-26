@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
+    <SwitchPreference
         android:summary="Haberlerden önce intro olsun mu?"
+        android:defaultValue="true"
         android:summaryOn="Intro Açık"
         android:summaryOff="Intro Kapalı"
         android:title="Haber Intro"
-        android:key="intro" />
-
-
+        android:key="prefIntro" />
 
 </PreferenceScreen>
