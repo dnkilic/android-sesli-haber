@@ -1,7 +1,6 @@
-package dnkilic.anadoluajans;
+package dnkilic.seslihaber;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -13,13 +12,12 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import dnkilic.anadoluajans.data.News;
+import dnkilic.seslihaber.data.News;
 
 public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
 

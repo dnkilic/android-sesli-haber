@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans.speaker;
+package dnkilic.seslihaber.speaker;
 
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-import dnkilic.anadoluajans.MainActivity;
+import dnkilic.seslihaber.MainActivity;
 
 public class Speaker {
 

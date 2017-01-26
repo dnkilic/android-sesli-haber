@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans;
+package dnkilic.seslihaber;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -26,11 +26,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import dnkilic.anadoluajans.data.News;
-import dnkilic.anadoluajans.speaker.Speaker;
-import dnkilic.anadoluajans.view.Dialog;
-import dnkilic.anadoluajans.view.DialogAdapter;
-import dnkilic.anadoluajans.view.NewsAdapter;
+import dnkilic.seslihaber.data.News;
+import dnkilic.seslihaber.speaker.Speaker;
+import dnkilic.seslihaber.view.Dialog;
+import dnkilic.seslihaber.view.DialogAdapter;
+import dnkilic.seslihaber.view.NewsAdapter;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity  {
     private Menu menu;
     public static HashMap<Integer, ArrayList<News>> newsMap = new HashMap<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +51,9 @@ public class MainActivity extends AppCompatActivity  {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -75,13 +72,11 @@ public class MainActivity extends AppCompatActivity  {
                 currentPosition = position;
             }
 
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
         });
-
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -183,10 +178,10 @@ public class MainActivity extends AppCompatActivity  {
 
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
             swipeContainer.setOnRefreshListener(this);
-            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light,
-                    android.R.color.holo_red_light);
+            swipeContainer.setColorSchemeResources(R.color.colorPrimary,
+                    R.color.colorPrimaryDark,
+                    R.color.colorPrimary,
+                    R.color.colorPrimaryDark);
 
             rvNews = (RecyclerView) rootView.findViewById(R.id.rvNews);
             mLayoutManager = new LinearLayoutManager(getContext());

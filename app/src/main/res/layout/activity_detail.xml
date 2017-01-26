@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDetailBackground"
-    tools:context="dnkilic.anadoluajans.DetailActivity">
+    tools:context="dnkilic.seslihaber.DetailActivity">
 
     <LinearLayout
         android:orientation="vertical"

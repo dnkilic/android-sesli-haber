@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans.view;
+package dnkilic.seslihaber.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import dnkilic.anadoluajans.DetailActivity;
-import dnkilic.anadoluajans.R;
-import dnkilic.anadoluajans.data.News;
+import dnkilic.seslihaber.DetailActivity;
+import dnkilic.seslihaber.R;
+import dnkilic.seslihaber.data.News;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 

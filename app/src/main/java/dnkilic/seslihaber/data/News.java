@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans.data;
+package dnkilic.seslihaber.data;
 
 public class News {
 

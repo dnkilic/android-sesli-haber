@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans;
+package dnkilic.seslihaber;
 
 import android.text.format.DateFormat;
 

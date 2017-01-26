@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans;
+package dnkilic.seslihaber;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

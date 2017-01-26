@@ -58,14 +58,18 @@
                     android:gravity="center"
                     android:background="#e0e0e0"
                     android:fontFamily="sans-serif"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:id="@+id/textView35"
                     android:gravity="center"
                     android:layout_weight="0.3"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="FİGEN KARAHAN"
@@ -75,7 +79,9 @@
                     android:gravity="center"
                     android:background="#feca61"
                     android:layout_weight="2"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="ÇETİN DEMİREL"
@@ -85,7 +91,10 @@
                     android:gravity="center"
                     android:background="#e0e0e0"
                     android:layout_weight="2"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="ÇAĞLA ERİŞ"
@@ -95,7 +104,9 @@
                     android:gravity="center"
                     android:background="#feca61"
                     android:layout_weight="2"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="SEMİH DİK"
@@ -104,7 +115,9 @@
                     android:id="@+id/textView29"
                     android:gravity="center"
                     android:background="#e0e0e0"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="BURCU TOPÇU"
@@ -113,7 +126,9 @@
                     android:id="@+id/textView30"
                     android:gravity="center"
                     android:background="#feca61"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
 
                 <TextView
@@ -123,7 +138,9 @@
                     android:id="@+id/textView27"
                     android:gravity="center"
                     android:background="#e0e0e0"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="NERGİS ŞİMŞEK"
@@ -132,7 +149,9 @@
                     android:id="@+id/textView26"
                     android:gravity="center"
                     android:background="#feca61"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="DOĞUKAN ARSLAN"
@@ -141,7 +160,9 @@
                     android:id="@+id/textView25"
                     android:gravity="center"
                     android:background="#e0e0e0"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="KÜBRA ÖZSOY"
@@ -150,7 +171,9 @@
                     android:id="@+id/textView24"
                     android:gravity="center"
                     android:background="#feca61"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="İSMAİL GÜNGÖR"
@@ -159,7 +182,9 @@
                     android:id="@+id/textView23"
                     android:gravity="center"
                     android:background="#e0e0e0"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="KÜBRA SEYHAN"
@@ -168,7 +193,9 @@
                     android:id="@+id/textView22"
                     android:gravity="center"
                     android:background="#feca61"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="YEŞİM EROL"
@@ -177,7 +204,9 @@
                     android:id="@+id/textView21"
                     android:gravity="center"
                     android:background="#e0e0e0"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
                 <TextView
                     android:text="ŞEBNEM SALİHA ÇAKIROĞLU"
@@ -186,7 +215,9 @@
                     android:id="@+id/textView20"
                     android:gravity="center"
                     android:background="#feca61"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
 
             </LinearLayout>
         </ScrollView>

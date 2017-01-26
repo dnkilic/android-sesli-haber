@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans.view;
+package dnkilic.seslihaber.view;
 
 public class Dialog {
 

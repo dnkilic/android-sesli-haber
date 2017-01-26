@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans;
+package dnkilic.seslihaber;
 
 import android.app.Activity;
 import android.graphics.Typeface;
@@ -26,15 +26,16 @@ public class AboutActivity extends Activity {
         @Override public void apply(View view, int index) {
             TextView tv = (TextView) view;
             tv.setTypeface(typeface);
+            tv.setText(tv.getText().toString().toLowerCase());
         }
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about_contact);
+        setContentView(R.layout.activity_about);
 
-        typeface = Typeface.createFromAsset(getAssets(),"Asimov.ttf");
+        typeface = Typeface.createFromAsset(getAssets(),"appleberry.ttf");
 
         ButterKnife.bind(this);
 

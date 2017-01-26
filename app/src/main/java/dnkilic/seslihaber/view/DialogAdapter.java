@@ -1,4 +1,4 @@
-package dnkilic.anadoluajans.view;
+package dnkilic.seslihaber.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import dnkilic.anadoluajans.R;
+import dnkilic.seslihaber.R;
 
 public class DialogAdapter extends RecyclerView.Adapter<DialogAdapter.ViewHolder>{
 
