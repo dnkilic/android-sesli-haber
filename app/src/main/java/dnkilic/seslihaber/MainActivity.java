@@ -268,6 +268,7 @@ public class MainActivity extends AppCompatActivity  {
             progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
             showProgress(true);
+            swipeContainer.setRefreshing(false);
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
                     new RssFeedParser(this).execute("guncel");
@@ -308,7 +309,6 @@ public class MainActivity extends AppCompatActivity  {
             }
 
             makeNewsRequest();
-            swipeContainer.setRefreshing(false);
             return rootView;
         }
 
@@ -383,7 +383,6 @@ public class MainActivity extends AppCompatActivity  {
                     return true;
                 }
             }
-
             return false;
         }
 
