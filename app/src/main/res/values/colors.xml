@@ -13,4 +13,9 @@
     <color name="colorDetailPrimary">#191d50</color>
     <color name="colorDetailPrimaryDark">#191d50</color>
     <color name="colorDetailAccent">#191d50</color>
+
+    <color name="slide_1">#4f91ff</color>
+    <color name="slide_2">#fb9c25</color>
+    <color name="slide_3">#D53D25</color>
+    <color name="slide_4">#eac100</color>
 </resources>

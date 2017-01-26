@@ -2,6 +2,7 @@ package dnkilic.seslihaber;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,8 +35,12 @@ import dnkilic.seslihaber.speaker.Speaker;
 import dnkilic.seslihaber.view.Dialog;
 import dnkilic.seslihaber.view.DialogAdapter;
 import dnkilic.seslihaber.view.NewsAdapter;
+import za.co.riggaroo.materialhelptutorial.TutorialItem;
+import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
 public class MainActivity extends AppCompatActivity  {
+
+    private static final int REQUEST_CODE = 1234;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -49,8 +55,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Selam ben kübra
-        //öbür projede birşeyler bozulmuş, update edilmiyor artık, bakalım burada commit yapabilecek miyiz
+        loadTutorial();
 
         speakerManager = new Speaker(this);
 
@@ -86,6 +91,43 @@ public class MainActivity extends AppCompatActivity  {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
+
+    public void loadTutorial() {
+        Intent mainAct = new Intent(this, MaterialTutorialActivity.class);
+        mainAct.putParcelableArrayListExtra(MaterialTutorialActivity.MATERIAL_TUTORIAL_ARG_TUTORIAL_ITEMS, getTutorialItems(this));
+        startActivityForResult(mainAct, REQUEST_CODE);
+    }
+
+    private ArrayList<TutorialItem> getTutorialItems(Context context) {
+        TutorialItem tutorialItem1 = new TutorialItem(context.getString(R.string.pull_to_refresh), null,
+                R.color.slide_1, R.drawable.pull_to_refresh);
+
+        TutorialItem tutorialItem2 = new TutorialItem(R.string.news_title, R.string.news_2_title,
+                R.color.slide_2,  R.drawable.news_title,  R.drawable.news_title);
+
+        TutorialItem tutorialItem3 = new TutorialItem(R.string.read_news, R.string.read_2_news,
+                R.color.slide_3,  R.drawable.read_news, R.drawable.read_news_background);
+
+        TutorialItem tutorialItem4 = new TutorialItem(context.getString(R.string.listen_radio), null,
+                R.color.slide_4, R.drawable.listen_radio);
+
+        ArrayList<TutorialItem> tutorialItems = new ArrayList<>();
+        tutorialItems.add(tutorialItem1);
+        tutorialItems.add(tutorialItem2);
+        tutorialItems.add(tutorialItem3);
+        tutorialItems.add(tutorialItem4);
+
+        return tutorialItems;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //    super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE){
+            Toast.makeText(this, "Tutorial finished", Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
