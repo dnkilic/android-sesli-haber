@@ -4,8 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -38,7 +41,7 @@ import dnkilic.seslihaber.view.NewsAdapter;
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements OnSharedPreferenceChangeListener {
 
     private static final int REQUEST_CODE = 1234;
 
@@ -50,6 +53,9 @@ public class MainActivity extends AppCompatActivity  {
     private Menu menu;
     public static HashMap<Integer, ArrayList<News>> newsMap = new HashMap<>();
 
+    private boolean introState;
+    SharedPreferences settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +63,9 @@ public class MainActivity extends AppCompatActivity  {
 
         loadTutorial();
 
+
         speakerManager = new Speaker(this);
+        settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,9 +98,12 @@ public class MainActivity extends AppCompatActivity  {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        getSettings();
     }
 
     public void loadTutorial() {
+
         Intent mainAct = new Intent(this, MaterialTutorialActivity.class);
         mainAct.putParcelableArrayListExtra(MaterialTutorialActivity.MATERIAL_TUTORIAL_ARG_TUTORIAL_ITEMS, getTutorialItems(this));
         startActivityForResult(mainAct, REQUEST_CODE);
@@ -184,7 +195,9 @@ public class MainActivity extends AppCompatActivity  {
 
                 if(titleList != null && !titleList.isEmpty())
                 {
-                    speakerManager.play("[intro]");
+                    if(introState) {
+                        speakerManager.play("[intro]");
+                    }
 
                     for(News i: titleList){
                         String title = i.getTitle();
@@ -194,8 +207,21 @@ public class MainActivity extends AppCompatActivity  {
                 }
             }
             return true;
+        }else if (item.getItemId()==R.id.mSettings){
+            Intent intent = new Intent(this,Settings.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+       getSettings();
+    }
+
+    public void getSettings(){
+        introState = settings.getBoolean("intro",true);
+        settings.registerOnSharedPreferenceChangeListener(MainActivity.this);
     }
 
     public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener {

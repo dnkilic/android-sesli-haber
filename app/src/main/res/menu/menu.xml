@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/about"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         app:showAsAction="always"
         android:onClick="onOptionsItemSelected"
         android:icon="@mipmap/ic_fingerprint" />
@@ -14,4 +14,12 @@
         app:showAsAction="always"
         android:onClick="onOptionsItemSelected"
         android:icon="@mipmap/ic_speaker_on" />
+    <item
+        android:id="@+id/mSettings"
+        app:showAsAction="always"
+        android:orderInCategory="1"
+        android:icon="@android:drawable/ic_menu_preferences"
+        />
+
+
 </menu>
