@@ -99,11 +99,11 @@ https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnki
 
 KÜBRA	ÖZSOY
 
-Uygulama ilk yüklendiği zaman çıkacak kullanımın anlatıldığı bir tutorial ekranı veya tutorial ekranları tasarımı, next tuşları vs
+<strike>Uygulama ilk yüklendiği zaman çıkacak kullanımın anlatıldığı bir tutorial ekranı veya tutorial ekranları tasarımı, next tuşları vs</strike>
 
-https://developer.android.com/training/basics/data-storage/shared-preferences.html
+<strike>https://developer.android.com/training/basics/data-storage/shared-preferences.html</strike>
 
-https://github.com/riggaroo/MaterialIntroTutorial
+<strike>https://github.com/riggaroo/MaterialIntroTutorial</strike>
 
 
 DOĞUKAN	ARSLAN
