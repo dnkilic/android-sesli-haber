@@ -3,6 +3,8 @@ package dnkilic.seslihaber;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.PorterDuff;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -137,9 +139,12 @@ public class MainActivity extends AppCompatActivity  {
 
                 if(titleList != null && !titleList.isEmpty())
                 {
+                    speakerManager.play("[intro]");
+
                     for(News i: titleList){
                         String title = i.getTitle();
                         speakerManager.speak(title);
+                        speakerManager.play("[beep]");
                     }
                 }
             }
@@ -191,6 +196,7 @@ public class MainActivity extends AppCompatActivity  {
             adapter = new NewsAdapter(dataset, getActivity());
             rvNews.setAdapter(adapter);
             progressBar = (ProgressBar) rootView.findViewById(R.id.pbQueryNews);
+            progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
             showProgress(true);
 

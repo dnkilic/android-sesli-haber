@@ -7,6 +7,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import dnkilic.seslihaber.MainActivity;
+import dnkilic.seslihaber.R;
 
 public class Speaker {
 
@@ -23,6 +24,8 @@ public class Speaker {
             public void onInit(int i) {
                 if(i == TextToSpeech.SUCCESS){
                     mTextToSpeech.setLanguage(new Locale("TR-tr"));
+                    mTextToSpeech.addEarcon("[intro]", "dnkilic.seslihaber", R.raw.intro);
+                    mTextToSpeech.addEarcon("[beep]", "dnkilic.seslihaber", R.raw.beep);
 
                     switch (mTextToSpeech.isLanguageAvailable(new Locale("TR-tr")))
                     {
@@ -48,7 +51,19 @@ public class Speaker {
             }
             else
             {
-                mTextToSpeech.speak(announce, TextToSpeech.QUEUE_FLUSH, null);
+                mTextToSpeech.speak(announce, TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    }
+
+    public void play(String earcon){
+        if(mIsTTSEnabled){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mTextToSpeech.playEarcon(earcon, TextToSpeech.QUEUE_ADD, null, "");
+            }
+            else
+            {
+                mTextToSpeech.playEarcon(earcon, TextToSpeech.QUEUE_ADD, null);
             }
         }
     }
