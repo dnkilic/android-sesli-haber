@@ -31,22 +31,22 @@ BURCU	TOPÇU
 
 ELİF	KURT (listeye ismi eklenmeyecek)
 
-uygulama içerisinde kullanılan renklerin değiştirilmesi,
+<strike>uygulama içerisinde kullanılan renklerin değiştirilmesi
 haberlerin pencere benzeri bir şey içerisine alınması,
 bütün görsel düzenlemeler,
 icon bulunması (yüksek çözünürlükte),
-<strike>anadolu ajansı haricinde bir isim bulunması verilmesi,</strike>
+anadolu ajansı haricinde bir isim bulunması verilmesi,
 yazı fontları vb'ni kapsayacak bütün görsel düzenlemeler.
 farklı tasarımlar sınıfın onayına sunulmalı
-<strike>Reklamların ayarlanması</strike>
+Reklamların ayarlanması</strike>
 
-https://material.io/guidelines/
+<strike>https://material.io/guidelines/</strike>
 
-https://developer.android.com/design/material/index.html
+<strike>https://developer.android.com/design/material/index.html</strike>
 
-https://developer.android.com/distribute/monetize/ads.html
+<strike>https://developer.android.com/distribute/monetize/ads.html</strike>
 
-https://firebase.google.com/docs/admob/android/quick-start
+<strike>https://firebase.google.com/docs/admob/android/quick-start</strike>
 
 
 ÇETİN	DEMİREL
