@@ -271,13 +271,13 @@ public class MainActivity extends AppCompatActivity  {
 
             showProgress(true);
             swipeContainer.setRefreshing(false);
-            makeNewsRequest();
+            makeNewsRequest(0);
 
             return rootView;
         }
 
 
-        private void makeNewsRequest() {
+        private void makeNewsRequest(int control) {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
                     new RssFeedParser(this).execute("guncel");
@@ -316,11 +316,13 @@ public class MainActivity extends AppCompatActivity  {
                     new RssFeedParser(this).execute("gunun-basliklari");
                     break;
 				case 12:
-                    radioData();
-                    showProgress(false);
-                    radioAdapter = new RadioAdapter(radioDataset, getContext());
-                    recyclerView.setAdapter(radioAdapter);
-                    break;	
+                    if(control == 0){
+                        radioData();
+                        showProgress(false);
+                        radioAdapter = new RadioAdapter(radioDataset, getContext());
+                        recyclerView.setAdapter(radioAdapter);
+                    }
+                    break;
             }
         }
 
@@ -398,7 +400,7 @@ public class MainActivity extends AppCompatActivity  {
 
         @Override
         public void onRefresh() {
-            makeNewsRequest();
+            makeNewsRequest(1);
         }
     }
 
