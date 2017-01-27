@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
@@ -140,7 +139,6 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -222,7 +220,7 @@ public class MainActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener{
+    public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -251,11 +249,11 @@ public class MainActivity extends AppCompatActivity  {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
-            swipeContainer.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) this);
-            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                    android.R.color.holo_red_light,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light);
+            swipeContainer.setOnRefreshListener(this);
+            swipeContainer.setColorSchemeResources(R.color.colorPrimary,
+                    R.color.colorPrimaryDark,
+                    R.color.colorPrimary,
+                    R.color.colorPrimaryDark);
 
             rvNews = (RecyclerView) rootView.findViewById(R.id.rvNews);
             mLayoutManager = new LinearLayoutManager(getContext());
@@ -269,52 +267,11 @@ public class MainActivity extends AppCompatActivity  {
 
             showProgress(true);
             swipeContainer.setRefreshing(false);
-            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case 0:
-                    new RssFeedParser(this).execute("guncel");
-                    break;
-                case 1:
-                    new RssFeedParser(this).execute("spor");
-                    break;
-                case 2:
-                    new RssFeedParser(this).execute("ekonomi");
-                    break;
-                case 3:
-                    new RssFeedParser(this).execute("turkiye");
-                    break;
-                case 4:
-                    new RssFeedParser(this).execute("dunya");
-                    break;
-                case 5:
-                    new RssFeedParser(this).execute("kultur-sanat");
-                    break;
-                case 6:
-                    new RssFeedParser(this).execute("politika");
-                    break;
-                case 7:
-                    new RssFeedParser(this).execute("bilim-teknoloji");
-                    break;
-                case 8:
-                    new RssFeedParser(this).execute("yasam");
-                    break;
-                case 9:
-                    new RssFeedParser(this).execute("saglik");
-                    break;
-                case 10:
-                    new RssFeedParser(this).execute("analiz-haber");
-                    break;
-                case 11:
-                    new RssFeedParser(this).execute("gunun-basliklari");
-                    break;
-            }
-
             makeNewsRequest();
+
             return rootView;
         }
 
-        private void refresh() {
-            makeNewsRequest();
-        }
 
         private void makeNewsRequest() {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
@@ -383,6 +340,7 @@ public class MainActivity extends AppCompatActivity  {
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -415,52 +373,15 @@ public class MainActivity extends AppCompatActivity  {
             progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
             progressBar.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
+                    @Override
+                    public void onAnimationEnd(Animator animation) {progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+                    }
             });
         }
 
         @Override
         public void onRefresh() {
-            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case 0:
-                    new RssFeedParser(this).execute("guncel");
-                    break;
-                case 1:
-                    new RssFeedParser(this).execute("spor");
-                    break;
-                case 2:
-                    new RssFeedParser(this).execute("ekonomi");
-                    break;
-                case 3:
-                    new RssFeedParser(this).execute("turkiye");
-                    break;
-                case 4:
-                    new RssFeedParser(this).execute("dunya");
-                    break;
-                case 5:
-                    new RssFeedParser(this).execute("kultur-sanat");
-                    break;
-                case 6:
-                    new RssFeedParser(this).execute("politika");
-                    break;
-                case 7:
-                    new RssFeedParser(this).execute("bilim-teknoloji");
-                    break;
-                case 8:
-                    new RssFeedParser(this).execute("yasam");
-                    break;
-                case 9:
-                    new RssFeedParser(this).execute("saglik");
-                    break;
-                case 10:
-                    new RssFeedParser(this).execute("analiz-haber");
-                    break;
-                case 11:
-                    new RssFeedParser(this).execute("gunun-basliklari");
-                    break;
-            }
+            makeNewsRequest();
         }
     }
 
