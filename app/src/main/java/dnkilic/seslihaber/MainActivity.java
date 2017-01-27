@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity  {
             progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
             showProgress(true);
-            swipeContainer.setRefreshing(false);
+            swipeContainer.setRefreshing(false);// set refreshing metodunu manipule ediyoruz, başlangıçta dönmemesi için false diyoruz
             makeNewsRequest(0);
 
             return rootView;
@@ -337,6 +337,7 @@ public class MainActivity extends AppCompatActivity  {
         public void onSuccess(ArrayList<News> news) {
             showProgress(false);
             swipeContainer.setRefreshing(false);
+            // eğer işlem başarılıysa durduuyoruz
 
             for(News item : news)
             {
@@ -384,7 +385,6 @@ public class MainActivity extends AppCompatActivity  {
                 recyclerView.setAdapter(errorDialogAdapter);
             }
         }
-
 
         private void showProgress(final boolean show) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
