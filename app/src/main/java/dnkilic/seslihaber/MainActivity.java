@@ -32,10 +32,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dnkilic.seslihaber.data.News;
+import dnkilic.seslihaber.data.Radio;
 import dnkilic.seslihaber.speaker.Speaker;
 import dnkilic.seslihaber.view.Dialog;
 import dnkilic.seslihaber.view.DialogAdapter;
 import dnkilic.seslihaber.view.NewsAdapter;
+import dnkilic.seslihaber.view.RadioAdapter;
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
@@ -225,10 +227,11 @@ public class MainActivity extends AppCompatActivity  {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         private SwipeRefreshLayout swipeContainer;
-        private RecyclerView rvNews;
-        private RecyclerView.Adapter adapter,errorDialogAdapter;
+        private RecyclerView recyclerView;
+        private RecyclerView.Adapter adapter,errorDialogAdapter,radioAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
         private ArrayList<News> dataset;
+		private ArrayList<Radio> radioDataset;
         private ArrayList<Dialog> errorDialogList;
         private ProgressBar progressBar;
 
@@ -255,13 +258,14 @@ public class MainActivity extends AppCompatActivity  {
                     R.color.colorPrimary,
                     R.color.colorPrimaryDark);
 
-            rvNews = (RecyclerView) rootView.findViewById(R.id.rvNews);
+            recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
             mLayoutManager = new LinearLayoutManager(getContext());
-            rvNews.setLayoutManager(mLayoutManager);
+            recyclerView.setLayoutManager(mLayoutManager);
             dataset = new ArrayList<>();
+			radioDataset = new ArrayList<>();
 
             adapter = new NewsAdapter(dataset, getActivity());
-            rvNews.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);
             progressBar = (ProgressBar) rootView.findViewById(R.id.pbQueryNews);
             progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
@@ -311,9 +315,22 @@ public class MainActivity extends AppCompatActivity  {
                 case 11:
                     new RssFeedParser(this).execute("gunun-basliklari");
                     break;
+				case 12:
+                    radioData();
+                    showProgress(false);
+                    radioAdapter = new RadioAdapter(radioDataset, getContext());
+                    recyclerView.setAdapter(radioAdapter);
+                    break;	
             }
         }
 
+		private void radioData() {
+            radioDataset.add(new Radio("TRT RADYO","http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"));
+            radioDataset.add(new Radio("HALK TV HABER","http://live4.radyotvonline.com:6670/"));
+            radioDataset.add(new Radio("RADYO HABER","http://46.165.233.175:4118/"));
+            radioDataset.add(new Radio("TRT RADYO HABER","http://46.20.3.210/listen.pls"));
+        }
+		
         @Override
         public void onSuccess(ArrayList<News> news) {
             showProgress(false);
@@ -355,14 +372,14 @@ public class MainActivity extends AppCompatActivity  {
                 Dialog errorDialog = new Dialog(errorMessage);
                 errorDialogList.add(errorDialog);
                 errorDialogAdapter = new DialogAdapter(errorDialogList);
-                rvNews.setAdapter(errorDialogAdapter);
+                recyclerView.setAdapter(errorDialogAdapter);
 
             }else
             {
                 Dialog errorDialog = new Dialog(getString(R.string.common_error));
                 errorDialogList.add(errorDialog);
                 errorDialogAdapter = new DialogAdapter(errorDialogList);
-                rvNews.setAdapter(errorDialogAdapter);
+                recyclerView.setAdapter(errorDialogAdapter);
             }
         }
 
@@ -398,7 +415,7 @@ public class MainActivity extends AppCompatActivity  {
 
         @Override
         public int getCount() {
-            return 12;
+            return 13;
         }
 
         @Override
@@ -429,6 +446,8 @@ public class MainActivity extends AppCompatActivity  {
                     return "ANALİZ HABER";
                 case 11:
                     return "GÜNÜN BAŞLIKLARI";
+				case 12:
+                    return "RADYO";		
             }
             return null;
         }
