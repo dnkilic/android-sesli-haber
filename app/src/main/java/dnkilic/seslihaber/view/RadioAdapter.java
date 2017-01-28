@@ -1,83 +1,91 @@
 package dnkilic.seslihaber.view;
 
-/**
- * Created by Speedy on 18.1.2017.
- */
-
 import android.content.Context;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
+import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.ArrayList;
 
 import dnkilic.seslihaber.R;
 import dnkilic.seslihaber.data.Radio;
-
+import dnkilic.seslihaber.player.RadioPlayer;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
-    Context context;
-    ArrayList<Radio> dataset;
+    private Context context;
+    private ArrayList<Radio> dataset;
 
-    MediaPlayer mediaPlayer;
+    private RadioPlayer radioPlayer;
 
-    public RadioAdapter(ArrayList<Radio> dataset, Context context) {
-
+    public RadioAdapter(ArrayList<Radio> dataset, Context context, RadioPlayer radioPlayer) {
         this.dataset = dataset;
         this.context = context;
+        this.radioPlayer = radioPlayer;
     }
 
+    public class ViewHolder extends RecyclerView.ViewHolder implements MaterialDialog.SingleButtonCallback, DialogInterface.OnCancelListener {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView canal_name;
-        ImageView radio_button;
+        TextView radioChannel;
+        public String channelUrl;
+        public String channelName;
 
         public ViewHolder(View v) {
             super(v);
 
+            final ViewHolder viewHolder = this;
 
-            canal_name = (TextView)v.findViewById(R.id.tvCanalName);
-            radio_button = (ImageView) v.findViewById(R.id.imgRadioButton);
 
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            radioChannel = (TextView)v.findViewById(R.id.tvChannelName);
 
-            radio_button.setOnClickListener(new View.OnClickListener() {
+
+            v.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    try {
-                        mediaPlayer.reset();
-                        mediaPlayer.setDataSource(dataset.get(getAdapterPosition()).getStream());
-                        mediaPlayer.prepare();
-
-                        if(mediaPlayer.isPlaying()){
-                            radio_button.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-                            mediaPlayer.stop();
-                            mediaPlayer.release();
-
-                        }
-                        else {
-                            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                @Override
-                                public void onPrepared(MediaPlayer mediaPlayer) {
-                                    mediaPlayer.start();
-                                }
-                            });
-                            radio_button.setImageResource(R.drawable.ic_pause_black_24dp);
+                public void onClick(View v) {
+                    if(!radioPlayer.isPlaying())
+                    {
+                        if(radioPlayer.start(channelUrl))
+                        {
+                            new MaterialDialog.Builder(context)
+                                    .title("Radyo Yayını")
+                                    .content(channelName)
+                                    .positiveText("Durdur")
+                                    .onPositive(viewHolder)
+                                    .cancelListener(viewHolder)
+                                    .show();
                         }
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
             });
+        }
+
+        @Override
+        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+            if(radioPlayer.isPlaying())
+            {
+                if(radioPlayer.stop())
+                {
+                    //
+                }
+            }
+        }
+
+        @Override
+        public void onCancel(DialogInterface dialog) {
+            if(radioPlayer.isPlaying())
+            {
+                if(radioPlayer.stop())
+                {
+                    //
+                }
+            }
         }
     }
 
@@ -88,15 +96,14 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
                 .from(parent.getContext())
                 .inflate(R.layout.radio_item, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(v);
-
-        return viewHolder;
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(RadioAdapter.ViewHolder holder, int position) {
-
-         holder.canal_name.setText(dataset.get(position).getCanal_name());
+        holder.radioChannel.setText(dataset.get(position).getChannelName());
+        holder.channelUrl = dataset.get(position).getStream();
+        holder.channelName = dataset.get(position).getChannelName();
     }
 
 
@@ -104,7 +111,4 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
     public int getItemCount() {
         return dataset.size();
     }
-
-
-
 }

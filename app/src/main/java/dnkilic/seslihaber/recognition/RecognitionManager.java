@@ -7,8 +7,6 @@ import android.speech.SpeechRecognizer;
 
 import dnkilic.seslihaber.MainActivity;
 
-//selamun aleykum :)
-//a.// STOPSHIP: 28.01.2017  //naptın kardo anlat istejes
 public class RecognitionManager implements  LanguageAvailabilityListener{
 
     private SpeechRecognizer mSpeechRecognizer;

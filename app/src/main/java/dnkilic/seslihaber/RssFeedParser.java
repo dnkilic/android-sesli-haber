@@ -64,23 +64,18 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
         }  catch (MalformedURLException e) {
             error = true;
             errorMessage = "Yasal bir protokol bulunamadı, hatalı bir URL oluştu!";
-            //Hatalı bir URL oluştuğunu belirtmek için fırlatırlır
-            //Yasal bir protokol bulunamadı yada stringler ayrıştırılamadı.
             e.printStackTrace();
         } catch (IOException e) {
             error = true;
             errorMessage = "Lütfen internet bağlantınızı kontrol ediniz! ";
-            //Internet Hatası
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
             error = true;
             errorMessage = "Yapılandırma hatası tespit edildi.Lütfen daha sonra tekrar deneyiniz!";
-            //Yapılandırma hatası.
             e.printStackTrace();
         } catch (SAXException e) {
             error = true;
             errorMessage = "Genel bir SAX hatası tespit edildi. Lütfen daha sonra tekrar deneyiniz!";
-            //Genel bir SAX hatası
             e.printStackTrace();
         }
         return newsList;

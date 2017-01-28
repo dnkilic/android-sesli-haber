@@ -26,7 +26,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +33,7 @@ import java.util.Map;
 
 import dnkilic.seslihaber.data.News;
 import dnkilic.seslihaber.data.Radio;
+import dnkilic.seslihaber.player.RadioPlayer;
 import dnkilic.seslihaber.recognition.RecognitionManager;
 import dnkilic.seslihaber.speaker.Speaker;
 import dnkilic.seslihaber.view.Dialog;
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private RecognitionManager recognitionManager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-
     private Speaker speakerManager;
     private static int currentPosition;
     private Menu menu;
@@ -66,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         recognitionManager = new RecognitionManager(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -82,7 +82,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 if(speakerManager != null)
                 {
                     speakerManager.stop();
-                    menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+
+                    if(menu != null)
+                    {
+                        menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+                    }
                 }
 
                 currentPosition = position;
@@ -134,14 +138,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         tutorialItems.add(tutorialItem4);
 
         return tutorialItems;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE){
-            Toast.makeText(this, "Tutorial finished", Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
@@ -279,12 +275,12 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         private SwipeRefreshLayout swipeContainer;
         private RecyclerView recyclerView;
-        private RecyclerView.Adapter adapter,errorDialogAdapter,radioAdapter;
+        private RecyclerView.Adapter adapter,errorDialogAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
         private ArrayList<News> dataset;
-		private ArrayList<Radio> radioDataset;
         private ArrayList<Dialog> errorDialogList;
         private ProgressBar progressBar;
+        private RadioPlayer radioPlayer;
 
         public PlaceholderFragment() {
         }
@@ -302,6 +298,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+            radioPlayer = new RadioPlayer(getContext());
+
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
             swipeContainer.setOnRefreshListener(this);
             swipeContainer.setColorSchemeResources(R.color.colorPrimary,
@@ -313,7 +311,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             mLayoutManager = new LinearLayoutManager(getContext());
             recyclerView.setLayoutManager(mLayoutManager);
             dataset = new ArrayList<>();
-			radioDataset = new ArrayList<>();
 
             adapter = new NewsAdapter(dataset, getActivity());
             recyclerView.setAdapter(adapter);
@@ -321,14 +318,13 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
             showProgress(true);
-            swipeContainer.setRefreshing(false);// set refreshing metodunu manipule ediyoruz, başlangıçta dönmemesi için false diyoruz
-            makeNewsRequest(0);
+            swipeContainer.setRefreshing(false);
+            makeNewsRequest();
 
             return rootView;
         }
 
-
-        private void makeNewsRequest(int control) {
+        private void makeNewsRequest() {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
                     new RssFeedParser(this).execute("guncel");
@@ -367,21 +363,22 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     new RssFeedParser(this).execute("gunun-basliklari");
                     break;
 				case 12:
-                    if(control == 0){
-                        radioData();
-                        showProgress(false);
-                        radioAdapter = new RadioAdapter(radioDataset, getContext());
-                        recyclerView.setAdapter(radioAdapter);
-                    }
+                    //TODO tts not clickable
+                    showProgress(false);
+                    swipeContainer.setEnabled(false);
+                    RadioAdapter radioAdapter = new RadioAdapter(insertRadioChannels(), getContext(), radioPlayer);
+                    recyclerView.setAdapter(radioAdapter);
                     break;
             }
         }
 
-		private void radioData() {
-            radioDataset.add(new Radio("TRT RADYO","http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"));
-            radioDataset.add(new Radio("HALK TV HABER","http://live4.radyotvonline.com:6670/"));
-            radioDataset.add(new Radio("RADYO HABER","http://46.165.233.175:4118/"));
-            radioDataset.add(new Radio("TRT RADYO HABER","http://46.20.3.210/listen.pls"));
+		private ArrayList<Radio> insertRadioChannels() {
+            ArrayList<Radio> radioList = new ArrayList<>();
+            radioList.add(new Radio("TRT RADYO","http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"));
+            radioList.add(new Radio("HALK TV HABER","http://live4.radyotvonline.com:6670/"));
+            radioList.add(new Radio("RADYO HABER","http://46.165.233.175:4118/"));
+            radioList.add(new Radio("TRT RADYO HABER","http://46.20.3.210/listen.pls"));
+            return radioList;
         }
 
         @Override
@@ -401,8 +398,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             adapter.notifyDataSetChanged();
         }
 
-        private boolean isNewsDuplicate(News news, ArrayList<News> currentNews)
-        {
+        private boolean isNewsDuplicate(News news, ArrayList<News> currentNews) {
             for(News current : currentNews)
             {
                 if(news.getId().equals(current.getId()))
@@ -451,7 +447,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         @Override
         public void onRefresh() {
-            makeNewsRequest(1);
+            makeNewsRequest();
         }
     }
 

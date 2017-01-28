@@ -11,8 +11,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-       >
+        android:background="@android:color/white">
 
         <ScrollView
             android:layout_width="wrap_content"

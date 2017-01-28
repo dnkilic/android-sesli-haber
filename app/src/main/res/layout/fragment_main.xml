@@ -10,8 +10,6 @@
     tools:context="dnkilic.seslihaber.MainActivity$PlaceholderFragment"
     android:weightSum="1">
 
-
-
     <ProgressBar
         android:id="@+id/pbQueryNews"
         style="?android:attr/progressBarStyleLarge"

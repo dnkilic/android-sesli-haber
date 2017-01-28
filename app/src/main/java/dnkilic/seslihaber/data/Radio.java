@@ -1,25 +1,21 @@
 package dnkilic.seslihaber.data;
 
-/**
- * Created by Speedy on 18.1.2017.
- */
-
 public class Radio {
 
-    private String canal_name;
+    private String channelName;
     private String stream;
 
-    public Radio(String canal_name, String stream) {
-        this.canal_name = canal_name;
+    public Radio(String channelName, String stream) {
+        this.channelName = channelName;
         this.stream = stream;
     }
 
-    public String getCanal_name() {
-        return canal_name;
+    public String getChannelName() {
+        return channelName;
     }
 
-    public void setCanal_name(String canal_name) {
-        this.canal_name = canal_name;
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 
     public String getStream() {

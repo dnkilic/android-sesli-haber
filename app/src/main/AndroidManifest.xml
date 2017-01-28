@@ -22,11 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="dnkilic.seslihaber.DetailActivity" android:theme="@style/DetailTheme"/>
-        <activity android:name="dnkilic.seslihaber.AboutActivity" android:theme="@style/AboutTheme" />
+        <activity android:name="dnkilic.seslihaber.DetailActivity"
+            android:theme="@style/DetailTheme"/>
+        <activity android:name="dnkilic.seslihaber.AboutActivity"
+            android:theme="@style/AboutTheme" />
+        <activity android:name=".SettingsActivity"
+            android:theme="@style/SettingsTheme"/>
         <activity android:name="za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".SettingsActivity" android:theme="@style/SettingsTheme" ></activity>
     </application>
-
 </manifest>
