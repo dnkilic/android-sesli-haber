@@ -11,7 +11,10 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringDef;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -31,6 +34,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.canelmas.let.AskPermission;
 import com.canelmas.let.DeniedPermission;
@@ -164,6 +168,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             speakerManager.shutdown();
             menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
         }
+
+        if(recognitionManager != null)
+        {
+            recognitionManager.destroy();
+        }
     }
 
     @Override
@@ -178,6 +187,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             {
                 menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
             }
+        }
+
+        if(recognitionManager != null)
+        {
+            recognitionManager.destroy();
         }
     }
 
@@ -270,13 +284,44 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     }
 
     @Override
-    public void onError(int error) {
-
-    }
+    public void onError(int error) {}
 
     @Override
     public void onResults(Bundle results) {
+        ArrayList<String> textMatchList = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
+        if(textMatchList != null && !textMatchList.isEmpty())
+        {
+            String result = textMatchList.get(0);
+
+            if(result.contains("güncel")) {
+                mViewPager.setCurrentItem(0);
+            } else if (result.contains("spor")) {
+                mViewPager.setCurrentItem(1);
+            } else if (result.contains("ekonomi")) {
+                mViewPager.setCurrentItem(2);
+            } else if (result.contains("türkiye")) {
+                mViewPager.setCurrentItem(3);
+            } else if (result.contains("dünya")) {
+                mViewPager.setCurrentItem(4);
+            } else if (result.contains("kültür") || result.contains("sanat")) {
+                mViewPager.setCurrentItem(5);
+            } else if (result.contains("politika")) {
+                mViewPager.setCurrentItem(6);
+            } else if (result.contains("bilim") || result.contains("teknoloji")) {
+                mViewPager.setCurrentItem(7);
+            } else if (result.contains("yaşam")) {
+                mViewPager.setCurrentItem(8);
+            } else if (result.contains("sağlık")) {
+                mViewPager.setCurrentItem(9);
+            } else if (result.contains("analiz")) {
+                mViewPager.setCurrentItem(10);
+            } else if (result.contains("günün") || result.contains("başlıkları")) {
+                mViewPager.setCurrentItem(11);
+            } else if (result.contains("radyo")) {
+                mViewPager.setCurrentItem(12);
+            }
+        }
     }
 
     @Override

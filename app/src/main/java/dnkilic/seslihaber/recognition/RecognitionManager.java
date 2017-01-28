@@ -18,8 +18,6 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
     {
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(act);
         mSpeechRecognizer.setRecognitionListener(act);
-
-
         mActivity = act;
     }
 
@@ -33,6 +31,7 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
         else
         {
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "tr-TR");
             mSpeechRecognizer.startListening(intent);
         }
 
@@ -49,7 +48,6 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
 
     @Override
     public void onLanguageAvailabilityCheck(boolean availability) {
-
         if(availability)
         {
             start();
@@ -57,7 +55,6 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
         else
         {
             Toast.makeText(mActivity, "Cihazda Türkçe ses tanıma desteklenmemektedir.", Toast.LENGTH_SHORT).show();
-
         }
     }
 }
