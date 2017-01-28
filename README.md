@@ -2,7 +2,7 @@
 
 FİGEN	KARAHAN	
 
-Yönetici, yürütücü, şikayet dinleyici, gerekirse programmatic destek, yoğunlukla fikirsel destek, yanlışların ifade edilmesi, işlerin yürütülmesi, insiyatif kullanma, ben olmadan problemlerin çözülmesi, organizasyon. Proje bittiğinde kimin ismi yazılacak kiminki yazılmayacak karar mercii.
+<strike>Yönetici, yürütücü, şikayet dinleyici, gerekirse programmatic destek, yoğunlukla fikirsel destek, yanlışların ifade edilmesi, işlerin yürütülmesi, insiyatif kullanma, ben olmadan problemlerin çözülmesi, organizasyon. Proje bittiğinde kimin ismi yazılacak kiminki yazılmayacak karar mercii.</strike>
 
 
 ÇAĞLA ERİŞ
@@ -77,7 +77,7 @@ SEMİH	DİK
 <strike>http://stackoverflow.com/questions/26539623/android-lollipop-toolbar-how-to-hide-show-the-toolbar-while-scrolling </strike>
 
 
-NERGİS	ŞİMŞEK
+NERGİS	ŞİMŞEK (listeye ismi eklenmeyecek)
 
 Uygulamanın erişilebilir hale getirilmesi, talkback ile test edilmesi kör kullanıcılar için çalışır duruma getirilmesi
 
@@ -88,13 +88,13 @@ https://developer.android.com/training/accessibility/index.html
 
 SEDRETTİN	ÇALIŞKAN
 
-Application bar'a ses tanıma işlemini tetikletecek bir tuş konulması, tıklanması durumunda ses inputu alınması ve kullanıcı spor derse spora ekonomi derse ekonomi kısmına yönlendirilmesi
+<strike>Application bar'a ses tanıma işlemini tetikletecek bir tuş konulması, tıklanması durumunda ses inputu alınması ve kullanıcı spor derse spora ekonomi derse ekonomi kısmına yönlendirilmesi</strike>
 
-https://developer.android.com/training/appbar/actions.html
+<strike>https://developer.android.com/training/appbar/actions.html</strike>
 
-https://developer.android.com/reference/android/speech/SpeechRecognizer.html
+<strike>https://developer.android.com/reference/android/speech/SpeechRecognizer.html</strike>
 
-https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/recognition
+<strike>https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/recognition</strike>
 
 
 KÜBRA	ÖZSOY
@@ -117,11 +117,11 @@ DOĞUKAN	ARSLAN
 
 KÜBRA SEYHAN
 
-Tersine mühendisliği engellemek için proguard kurallarının oluşturulması, test edilmesi
+<strike>Tersine mühendisliği engellemek için proguard kurallarının oluşturulması, test edilmesi</strike>
 
-https://developer.android.com/studio/build/shrink-code.html
+<strike>https://developer.android.com/studio/build/shrink-code.html</strike>
 
-https://www.mobilhanem.com/android-proguard-kullanimi-apk-guvenligi-apk-kucultme/
+<strike>https://www.mobilhanem.com/android-proguard-kullanimi-apk-guvenligi-apk-kucultme/</strike>
 
 
 YEŞİM	EROL
@@ -146,12 +146,12 @@ YEŞİM	EROL
 
 ŞEBNEM SALİHA	ÇAKIROĞLU
 
-Haber kategorilerine yeni bir ekran eklenmesi "Radyo" adının verilmesi ve bu ekranda haber radyoları çalınması
-Radyolar recyle view'da listeleencek iconları vs güzel olacak.
+<strike>Haber kategorilerine yeni bir ekran eklenmesi "Radyo" adının verilmesi ve bu ekranda haber radyoları çalınması</strike>
+<strike>Radyolar recyle view'da listeleencek iconları vs güzel olacak.</strike>
 
-"http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"
+<strike>"http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"</strike>
 
-https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view
+<strike>https://github.com/dnkilic/android-gerzek/tree/master/app/src/main/java/com/dnkilic/stupid/view</strike>
 
-https://developer.android.com/reference/android/media/MediaPlayer.html
+<strike>https://developer.android.com/reference/android/media/MediaPlayer.html</strike>
 
