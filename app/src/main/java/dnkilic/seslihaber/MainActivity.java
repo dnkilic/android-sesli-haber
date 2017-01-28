@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
+import android.speech.RecognitionListener;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import java.util.Map;
 
 import dnkilic.seslihaber.data.News;
 import dnkilic.seslihaber.data.Radio;
+import dnkilic.seslihaber.recognition.RecognitionManager;
 import dnkilic.seslihaber.speaker.Speaker;
 import dnkilic.seslihaber.view.Dialog;
 import dnkilic.seslihaber.view.DialogAdapter;
@@ -41,10 +43,10 @@ import dnkilic.seslihaber.view.RadioAdapter;
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements RecognitionListener {
 
     private static final int REQUEST_CODE = 1001;
-
+    private RecognitionManager recognitionManager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity  {
         loadTutorial();
 
         speakerManager = new Speaker(this);
+        recognitionManager = new RecognitionManager(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -219,7 +222,55 @@ public class MainActivity extends AppCompatActivity  {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
+          else if (item.getItemId()==R.id.microphoneButton){
+             recognitionManager.start();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onReadyForSpeech(Bundle params) {
+
+    }
+
+    @Override
+    public void onBeginningOfSpeech() {
+
+    }
+
+    @Override
+    public void onRmsChanged(float rmsdB) {
+
+    }
+
+    @Override
+    public void onBufferReceived(byte[] buffer) {
+
+    }
+
+    @Override
+    public void onEndOfSpeech() {
+
+    }
+
+    @Override
+    public void onError(int error) {
+
+    }
+
+    @Override
+    public void onResults(Bundle results) {
+
+    }
+
+    @Override
+    public void onPartialResults(Bundle partialResults) {
+
+    }
+
+    @Override
+    public void onEvent(int eventType, Bundle params) {
+
     }
 
     public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener {
@@ -332,12 +383,11 @@ public class MainActivity extends AppCompatActivity  {
             radioDataset.add(new Radio("RADYO HABER","http://46.165.233.175:4118/"));
             radioDataset.add(new Radio("TRT RADYO HABER","http://46.20.3.210/listen.pls"));
         }
-		
+
         @Override
         public void onSuccess(ArrayList<News> news) {
             showProgress(false);
             swipeContainer.setRefreshing(false);
-            // eğer işlem başarılıysa durduuyoruz
 
             for(News item : news)
             {
@@ -385,6 +435,7 @@ public class MainActivity extends AppCompatActivity  {
                 recyclerView.setAdapter(errorDialogAdapter);
             }
         }
+
 
         private void showProgress(final boolean show) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
@@ -449,7 +500,7 @@ public class MainActivity extends AppCompatActivity  {
                 case 11:
                     return "GÜNÜN BAŞLIKLARI";
 				case 12:
-                    return "RADYO";		
+                    return "RADYO";
             }
             return null;
         }
