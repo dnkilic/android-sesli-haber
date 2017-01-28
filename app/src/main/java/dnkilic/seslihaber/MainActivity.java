@@ -324,6 +324,26 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             return rootView;
         }
 
+        @Override
+        public void onStop() {
+            super.onStop();
+
+            if(radioPlayer != null)
+            {
+                radioPlayer.stop();
+            }
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+
+            if(radioPlayer != null)
+            {
+                radioPlayer.stop();
+            }
+        }
+
         private void makeNewsRequest() {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
@@ -363,7 +383,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     new RssFeedParser(this).execute("gunun-basliklari");
                     break;
 				case 12:
-                    //TODO tts not clickable
                     showProgress(false);
                     swipeContainer.setEnabled(false);
                     RadioAdapter radioAdapter = new RadioAdapter(insertRadioChannels(), getContext(), radioPlayer);
