@@ -77,7 +77,7 @@ SEMİH	DİK
 <strike>http://stackoverflow.com/questions/26539623/android-lollipop-toolbar-how-to-hide-show-the-toolbar-while-scrolling </strike>
 
 
-NERGİS	ŞİMŞEK
+NERGİS	ŞİMŞEK (listeye ismi eklenmeyecek)
 
 Uygulamanın erişilebilir hale getirilmesi, talkback ile test edilmesi kör kullanıcılar için çalışır duruma getirilmesi
 
