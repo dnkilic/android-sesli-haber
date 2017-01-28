@@ -3,13 +3,18 @@ package dnkilic.seslihaber;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.speech.RecognitionListener;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +32,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.canelmas.let.AskPermission;
+import com.canelmas.let.DeniedPermission;
+import com.canelmas.let.Let;
+import com.canelmas.let.RuntimePermissionListener;
+import com.canelmas.let.RuntimePermissionRequest;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import dnkilic.seslihaber.data.News;
@@ -43,7 +55,9 @@ import dnkilic.seslihaber.view.RadioAdapter;
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
-public class MainActivity extends AppCompatActivity implements RecognitionListener {
+import static android.Manifest.permission.RECORD_AUDIO;
+
+public class MainActivity extends AppCompatActivity implements RecognitionListener, RuntimePermissionListener {
 
     private static final int REQUEST_CODE = 1001;
     private RecognitionManager recognitionManager;
@@ -168,12 +182,18 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Let.handle(this, requestCode, permissions, grantResults);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         this.menu = menu;
         return true;
     }
 
+    @AskPermission(RECORD_AUDIO)
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         if(item.getItemId()== R.id.about) {
@@ -266,6 +286,50 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     @Override
     public void onEvent(int eventType, Bundle params) {
+
+    }
+
+    @Override
+    public void onShowPermissionRationale(List<String> permissionList, final RuntimePermissionRequest permissionRequest) {
+
+        new AlertDialog.Builder(this).setTitle("İzine İhtiyaç Var!")
+                .setMessage("Ses tanıma yapabilmek için RECORD_AUDIO iznine ihtiyacım var.")
+                .setCancelable(true)
+                .setNegativeButton("Hayır Teşekkkürler", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("Tekrar Dene", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        permissionRequest.retry();
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public void onPermissionDenied(List<DeniedPermission> deniedPermissionList) {
+
+
+            new AlertDialog.Builder(this).setTitle("Ayarlara Giderek İzin Ver")
+                    .setMessage("Ses tanıma yapabilmek için RECORD_AUDIO iznine ihtiyacım var.")
+                    .setCancelable(true)
+                    .setPositiveButton("TAMAM", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                            Uri uri = Uri.fromParts("package", getPackageName(), null);
+                            intent.setData(uri);
+                            startActivityForResult(intent, 1);
+
+                            dialog.dismiss();
+                        }
+                    }).show();
+
 
     }
 

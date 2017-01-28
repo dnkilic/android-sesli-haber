@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.widget.Toast;
 
 import dnkilic.seslihaber.MainActivity;
 
@@ -17,6 +18,8 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
     {
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(act);
         mSpeechRecognizer.setRecognitionListener(act);
+
+
         mActivity = act;
     }
 
@@ -53,7 +56,8 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
         }
         else
         {
-            //TODO
+            Toast.makeText(mActivity, "Cihazda Türkçe ses tanıma desteklenmemektedir.", Toast.LENGTH_SHORT).show();
+
         }
     }
 }
