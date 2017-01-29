@@ -1,8 +1,8 @@
-package dnkilic.seslihaber;
+package com.dnkilic.seslihaber;
 
 import java.util.ArrayList;
 
-import dnkilic.seslihaber.data.News;
+import com.dnkilic.seslihaber.data.News;
 
 public interface NewsResultListener {
     void onSuccess(ArrayList<News> news);

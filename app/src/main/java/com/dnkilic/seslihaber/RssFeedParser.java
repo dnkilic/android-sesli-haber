@@ -1,4 +1,4 @@
-package dnkilic.seslihaber;
+package com.dnkilic.seslihaber;
 
 import android.os.AsyncTask;
 
@@ -17,7 +17,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import dnkilic.seslihaber.data.News;
+import com.dnkilic.seslihaber.data.News;
 
 public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
 

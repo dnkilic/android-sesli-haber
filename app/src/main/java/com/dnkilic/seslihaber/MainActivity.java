@@ -1,4 +1,4 @@
-package dnkilic.seslihaber;
+package com.dnkilic.seslihaber;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -47,15 +47,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dnkilic.seslihaber.data.News;
-import dnkilic.seslihaber.data.Radio;
-import dnkilic.seslihaber.player.RadioPlayer;
-import dnkilic.seslihaber.recognition.RecognitionManager;
-import dnkilic.seslihaber.speaker.Speaker;
-import dnkilic.seslihaber.view.Dialog;
-import dnkilic.seslihaber.view.DialogAdapter;
-import dnkilic.seslihaber.view.NewsAdapter;
-import dnkilic.seslihaber.view.RadioAdapter;
+import com.dnkilic.seslihaber.data.News;
+import com.dnkilic.seslihaber.data.Radio;
+import com.dnkilic.seslihaber.player.RadioPlayer;
+import com.dnkilic.seslihaber.recognition.RecognitionManager;
+import com.dnkilic.seslihaber.speaker.Speaker;
+import com.dnkilic.seslihaber.view.Dialog;
+import com.dnkilic.seslihaber.view.DialogAdapter;
+import com.dnkilic.seslihaber.view.NewsAdapter;
+import com.dnkilic.seslihaber.view.RadioAdapter;
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
@@ -252,8 +252,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
-          else if (item.getItemId()==R.id.microphoneButton){
-             recognitionManager.start();
+        else if (item.getItemId()==R.id.microphoneButton){
+            recognitionManager.start();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -321,6 +321,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             } else if (result.contains("radyo")) {
                 mViewPager.setCurrentItem(12);
             }
+
+            Toast.makeText(this, textMatchList.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -357,24 +359,21 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     @Override
     public void onPermissionDenied(List<DeniedPermission> deniedPermissionList) {
+        new AlertDialog.Builder(this).setTitle("Ayarlara Giderek İzin Ver")
+                .setMessage("Ses tanıma yapabilmek için RECORD_AUDIO iznine ihtiyacım var.")
+                .setCancelable(true)
+                .setPositiveButton("TAMAM", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivityForResult(intent, 1);
 
-            new AlertDialog.Builder(this).setTitle("Ayarlara Giderek İzin Ver")
-                    .setMessage("Ses tanıma yapabilmek için RECORD_AUDIO iznine ihtiyacım var.")
-                    .setCancelable(true)
-                    .setPositiveButton("TAMAM", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                            Uri uri = Uri.fromParts("package", getPackageName(), null);
-                            intent.setData(uri);
-                            startActivityForResult(intent, 1);
-
-                            dialog.dismiss();
-                        }
-                    }).show();
-
+                        dialog.dismiss();
+                    }
+                }).show();
 
     }
 
@@ -491,7 +490,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 case 11:
                     new RssFeedParser(this).execute("gunun-basliklari");
                     break;
-				case 12:
+                case 12:
                     showProgress(false);
                     swipeContainer.setEnabled(false);
                     RadioAdapter radioAdapter = new RadioAdapter(insertRadioChannels(), getContext(), radioPlayer);
@@ -500,7 +499,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             }
         }
 
-		private ArrayList<Radio> insertRadioChannels() {
+        private ArrayList<Radio> insertRadioChannels() {
             ArrayList<Radio> radioList = new ArrayList<>();
             radioList.add(new Radio("TRT RADYO","http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"));
             radioList.add(new Radio("HALK TV HABER","http://live4.radyotvonline.com:6670/"));
@@ -567,9 +566,9 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
             progressBar.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
-                    }
+                @Override
+                public void onAnimationEnd(Animator animation) {progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
             });
         }
 
@@ -623,7 +622,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     return "ANALİZ HABER";
                 case 11:
                     return "GÜNÜN BAŞLIKLARI";
-				case 12:
+                case 12:
                     return "RADYO";
             }
             return null;

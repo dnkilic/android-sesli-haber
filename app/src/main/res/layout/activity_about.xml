@@ -71,14 +71,13 @@
                     android:textColor="@color/colorAboutBackground" />
 
                 <TextView
-                    android:text="FİGEN KARAHAN"
+                    android:text="BURCU TOPÇU"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:id="@+id/textView34"
+                    android:id="@+id/textView30"
                     android:gravity="center"
                     android:background="#feca61"
                     android:layout_weight="2"
-                    android:textAlignment="center"
                     android:textStyle="bold"
                     android:textColor="@color/colorAboutBackground" />
 
@@ -108,10 +107,10 @@
                     android:textColor="@color/colorAboutBackground" />
 
                 <TextView
-                    android:text="SEMİH DİK"
+                    android:text="DOĞUKAN ARSLAN"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:id="@+id/textView29"
+                    android:id="@+id/textView25"
                     android:gravity="center"
                     android:background="#e0e0e0"
                     android:layout_weight="2"
@@ -119,10 +118,55 @@
                     android:textColor="@color/colorAboutBackground" />
 
                 <TextView
-                    android:text="BURCU TOPÇU"
+                    android:text="FİGEN KARAHAN"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:id="@+id/textView30"
+                    android:id="@+id/textView34"
+                    android:gravity="center"
+                    android:background="#feca61"
+                    android:layout_weight="2"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
+
+                <TextView
+                    android:text="İSMAİL GÜNGÖR"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/textView23"
+                    android:gravity="center"
+                    android:background="#e0e0e0"
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
+
+                <TextView
+                    android:text="KÜBRA ÖZSOY"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/textView24"
+                    android:gravity="center"
+                    android:background="#feca61"
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
+
+                <TextView
+                    android:text="KÜBRA SEYHAN"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/textView22"
+                    android:gravity="center"
+                    android:background="#e0e0e0"
+                    android:layout_weight="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAboutBackground" />
+
+                <TextView
+                    android:text="SEMİH DİK"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/textView29"
                     android:gravity="center"
                     android:background="#feca61"
                     android:layout_weight="2"
@@ -142,54 +186,10 @@
                     android:textColor="@color/colorAboutBackground" />
 
                 <TextView
-                    android:text="NERGİS ŞİMŞEK"
+                    android:text="ŞEBNEM SALİHA ÇAKIROĞLU"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:id="@+id/textView26"
-                    android:gravity="center"
-                    android:background="#feca61"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorAboutBackground" />
-
-                <TextView
-                    android:text="DOĞUKAN ARSLAN"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/textView25"
-                    android:gravity="center"
-                    android:background="#e0e0e0"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorAboutBackground" />
-
-                <TextView
-                    android:text="KÜBRA ÖZSOY"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/textView24"
-                    android:gravity="center"
-                    android:background="#feca61"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorAboutBackground" />
-
-                <TextView
-                    android:text="İSMAİL GÜNGÖR"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/textView23"
-                    android:gravity="center"
-                    android:background="#e0e0e0"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorAboutBackground" />
-
-                <TextView
-                    android:text="KÜBRA SEYHAN"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/textView22"
+                    android:id="@+id/textView20"
                     android:gravity="center"
                     android:background="#feca61"
                     android:layout_weight="2"
@@ -203,17 +203,6 @@
                     android:id="@+id/textView21"
                     android:gravity="center"
                     android:background="#e0e0e0"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorAboutBackground" />
-
-                <TextView
-                    android:text="ŞEBNEM SALİHA ÇAKIROĞLU"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/textView20"
-                    android:gravity="center"
-                    android:background="#feca61"
                     android:layout_weight="2"
                     android:textStyle="bold"
                     android:textColor="@color/colorAboutBackground" />

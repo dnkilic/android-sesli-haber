@@ -1,22 +1,19 @@
-package dnkilic.seslihaber.view;
+package com.dnkilic.seslihaber.view;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-
 import java.util.ArrayList;
 
-import dnkilic.seslihaber.R;
-import dnkilic.seslihaber.data.Radio;
-import dnkilic.seslihaber.player.RadioPlayer;
+import com.dnkilic.seslihaber.R;
+import com.dnkilic.seslihaber.data.Radio;
+import com.dnkilic.seslihaber.player.RadioPlayer;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
     private Context context;
@@ -30,7 +27,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         this.radioPlayer = radioPlayer;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements MaterialDialog.SingleButtonCallback, DialogInterface.OnCancelListener {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
 
         TextView radioChannel;
         public String channelUrl;
@@ -38,9 +35,6 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
         public ViewHolder(View v) {
             super(v);
-
-            final ViewHolder viewHolder = this;
-
 
             radioChannel = (TextView)v.findViewById(R.id.tvChannelName);
 
@@ -52,40 +46,41 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
                     {
                         if(radioPlayer.start(channelUrl))
                         {
-                            new MaterialDialog.Builder(context)
-                                    .title("Radyo Yayını")
-                                    .content(channelName)
-                                    .positiveText("Durdur")
-                                    .onPositive(viewHolder)
-                                    .cancelListener(viewHolder)
+                            new AlertDialog.Builder(context).setTitle("Radyo Yayını")
+                                    .setMessage(channelName)
+                                    .setCancelable(true)
+                                    .setNegativeButton("Durdur", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if(radioPlayer.isPlaying())
+                                            {
+                                                if(radioPlayer.stop())
+                                                {
+                                                    //
+                                                }
+                                            }
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                        @Override
+                                        public void onCancel(DialogInterface dialog) {
+                                            if(radioPlayer.isPlaying())
+                                            {
+                                                if(radioPlayer.stop())
+                                                {
+                                                    //
+                                                }
+                                            }
+                                        }
+                                    })
                                     .show();
+
                         }
 
                     }
                 }
             });
-        }
-
-        @Override
-        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-            if(radioPlayer.isPlaying())
-            {
-                if(radioPlayer.stop())
-                {
-                    //
-                }
-            }
-        }
-
-        @Override
-        public void onCancel(DialogInterface dialog) {
-            if(radioPlayer.isPlaying())
-            {
-                if(radioPlayer.stop())
-                {
-                    //
-                }
-            }
         }
     }
 

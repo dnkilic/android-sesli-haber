@@ -1,4 +1,4 @@
-package dnkilic.seslihaber.speaker;
+package com.dnkilic.seslihaber.speaker;
 
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
@@ -6,8 +6,8 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-import dnkilic.seslihaber.MainActivity;
-import dnkilic.seslihaber.R;
+import com.dnkilic.seslihaber.MainActivity;
+import com.dnkilic.seslihaber.R;
 
 public class Speaker {
 

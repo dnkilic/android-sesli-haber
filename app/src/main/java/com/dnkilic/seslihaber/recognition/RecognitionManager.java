@@ -1,4 +1,4 @@
-package dnkilic.seslihaber.recognition;
+package com.dnkilic.seslihaber.recognition;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,12 +6,11 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.widget.Toast;
 
-import dnkilic.seslihaber.MainActivity;
+import com.dnkilic.seslihaber.MainActivity;
 
 public class RecognitionManager implements  LanguageAvailabilityListener{
 
     private SpeechRecognizer mSpeechRecognizer;
-    private boolean mIsFirstRequest = true;
     private Activity mActivity;
 
     public RecognitionManager(MainActivity act)
@@ -22,20 +21,8 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
     }
 
     public void start() {
-
-        if(mIsFirstRequest)
-        {
-            Intent detailsIntent = new Intent(RecognizerIntent.ACTION_GET_LANGUAGE_DETAILS);
-            mActivity.sendOrderedBroadcast(detailsIntent, null, new LanguageDetailsChecker(this), null, Activity.RESULT_OK, null, null);
-        }
-        else
-        {
-            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "tr-TR");
-            mSpeechRecognizer.startListening(intent);
-        }
-
-        mIsFirstRequest = false;
+        Intent detailsIntent = new Intent(RecognizerIntent.ACTION_GET_LANGUAGE_DETAILS);
+        mActivity.sendOrderedBroadcast(detailsIntent, null, new LanguageDetailsChecker(this), null, Activity.RESULT_OK, null, null);
     }
 
     public void destroy()
@@ -50,7 +37,13 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
     public void onLanguageAvailabilityCheck(boolean availability) {
         if(availability)
         {
-            start();
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "tr");
+            intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, "tr");
+
+            intent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{"tr"});
+
+            mSpeechRecognizer.startListening(intent);
         }
         else
         {

@@ -1,11 +1,8 @@
-package dnkilic.seslihaber.player;
+package com.dnkilic.seslihaber.player;
 
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 
 import java.io.IOException;
 

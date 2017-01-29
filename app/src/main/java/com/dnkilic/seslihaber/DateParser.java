@@ -1,4 +1,4 @@
-package dnkilic.seslihaber;
+package com.dnkilic.seslihaber;
 
 import android.text.format.DateFormat;
 

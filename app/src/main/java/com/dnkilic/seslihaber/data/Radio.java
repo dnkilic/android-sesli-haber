@@ -1,4 +1,4 @@
-package dnkilic.seslihaber.data;
+package com.dnkilic.seslihaber.data;
 
 public class Radio {
 

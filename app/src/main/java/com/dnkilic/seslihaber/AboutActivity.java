@@ -1,4 +1,4 @@
-package dnkilic.seslihaber;
+package com.dnkilic.seslihaber;
 
 import android.app.Activity;
 import android.graphics.Typeface;
@@ -15,7 +15,7 @@ public class AboutActivity extends Activity {
 
     @BindViews({ R.id.textView2, R.id.textView20, R.id.textView21,
             R.id.textView22, R.id.textView23, R.id.textView24,
-            R.id.textView25, R.id.textView26, R.id.textView27,
+            R.id.textView25, R.id.textView27,
             R.id.textView29, R.id.textView30, R.id.textView32,
             R.id.textView33, R.id.textView34})
     List<TextView> nameViews;
