@@ -1,4 +1,9 @@
 # AnadoluAjansi
+# Bu uygulama 32 günde Android öğren programı kapsamında bir grup öğrenci tarafından geliştirilmiştir.
+
+EKRAN GÖRÜNTÜLERİ
+
+![](screenshots/oie_transparent.png)  ![](screenshots/oie_transparent-2.png)  ![](screenshots/oie_transparent-5.png)  ![](screenshots/oie_transparent-4.png)
 
 FİGEN	KARAHAN	
 
