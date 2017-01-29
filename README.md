@@ -1,4 +1,4 @@
-# AnadoluAjansi
+# Sesli Haber
 # Bu uygulama 32 günde Android öğren programı kapsamında bir grup öğrenci tarafından geliştirilmiştir.
 
 EKRAN GÖRÜNTÜLERİ
