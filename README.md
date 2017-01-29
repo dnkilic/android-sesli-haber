@@ -1,5 +1,5 @@
 # Sesli Haber
-# Bu uygulama 32 günde Android öğren programı kapsamında bir grup öğrenci tarafından geliştirilmiştir.
+Bu uygulama 32 günde Android öğren programı kapsamında bir grup öğrenci tarafından geliştirilmiştir.
 
 Özellikler
 --------
