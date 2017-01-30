@@ -36,13 +36,17 @@ public class LanguageDetailsChecker extends BroadcastReceiver
 
     private boolean isLanguageAvailable()
     {
-        for(String language : supportedLanguages)
+        if(supportedLanguages != null && !supportedLanguages.isEmpty())
         {
-            if(language.contains("tr") || language.contains("TR"))
+            for(String language : supportedLanguages)
             {
-                return true;
+                if(language.contains("tr") || language.contains("TR"))
+                {
+                    return true;
+                }
             }
         }
+
         return false;
     }
 }
