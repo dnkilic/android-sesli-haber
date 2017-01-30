@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         recognitionManager = new RecognitionManager(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        toolbar.setNavigationIcon(R.mipmap.icon);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
