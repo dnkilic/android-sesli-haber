@@ -11,10 +11,8 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -49,7 +47,6 @@ import java.util.Map;
 
 import com.dnkilic.seslihaber.data.News;
 import com.dnkilic.seslihaber.data.Radio;
-import com.dnkilic.seslihaber.player.RadioPlayer;
 import com.dnkilic.seslihaber.recognition.RecognitionManager;
 import com.dnkilic.seslihaber.speaker.Speaker;
 import com.dnkilic.seslihaber.view.Dialog;
@@ -389,7 +386,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         private ArrayList<News> dataset;
         private ArrayList<Dialog> errorDialogList;
         private ProgressBar progressBar;
-        private RadioPlayer radioPlayer;
 
         public PlaceholderFragment() {
         }
@@ -406,8 +402,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-            radioPlayer = new RadioPlayer(getContext());
 
             swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
             swipeContainer.setOnRefreshListener(this);
@@ -436,21 +430,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         @Override
         public void onStop() {
             super.onStop();
-
-            if(radioPlayer != null)
-            {
-                radioPlayer.stop();
-            }
         }
 
         @Override
         public void onDestroy() {
             super.onDestroy();
-
-            if(radioPlayer != null)
-            {
-                radioPlayer.stop();
-            }
         }
 
         private void makeNewsRequest() {
@@ -494,7 +478,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 case 12:
                     showProgress(false);
                     swipeContainer.setEnabled(false);
-                    RadioAdapter radioAdapter = new RadioAdapter(insertRadioChannels(), getContext(), radioPlayer);
+                    RadioAdapter radioAdapter = new RadioAdapter(insertRadioChannels(), getContext());
                     recyclerView.setAdapter(radioAdapter);
                     break;
             }

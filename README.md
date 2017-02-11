@@ -176,3 +176,19 @@ YEŞİM	EROL
 
 <strike>https://developer.android.com/reference/android/media/MediaPlayer.html</strike>
 
+
+Giriş ekranında finis ve skip butonları türkçeleştirilmeli
+İzinlerin yanlış yerde istenmesi
+internet hatası alındı sonra internet açıldı bu durumda spinner aşağı doğru çekildiğinde 
+galaxy tab a hiç konuşmuyor, radyo hiç çalışmıyor
+lg g3 sr yönlendirme yapamıyor, radyo çalışmıyor
+Menüye uzun basıldıuğı zaman boş toast çıkarıyor
+htc one mini radyo sıkıntılı donmaya sebep oluyor
+lg g2 radyo monkey testini geçemedi donmaya sebep oluyor
+Radyo son sayfada olmaktansa buton mu olmalı acaba?
+Samsung note 4 tts yok sr yok readyo yok
+Sony sr sorunlu, radyo çalışmıyor
+acaba tts butonlaması yanlış mı yapılmış, start stop mu yapılsa acaba
+radyo butonuna basıldığı zaman sorunlar yaşıyoruz, beklemek zorunda kalıyoruz
+detayda progress bar çıkarılmıyor
+sr toastı iki defa çıkıyor destekllenmeme , lg g4

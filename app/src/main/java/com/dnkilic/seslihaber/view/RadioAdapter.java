@@ -1,8 +1,8 @@
 package com.dnkilic.seslihaber.view;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +15,15 @@ import com.dnkilic.seslihaber.R;
 import com.dnkilic.seslihaber.data.Radio;
 import com.dnkilic.seslihaber.player.RadioPlayer;
 
+import static com.dnkilic.seslihaber.player.RadioPlayer.ACTION_PLAY;
+
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
     private Context context;
     private ArrayList<Radio> dataset;
 
-    private RadioPlayer radioPlayer;
-
-    public RadioAdapter(ArrayList<Radio> dataset, Context context, RadioPlayer radioPlayer) {
+    public RadioAdapter(ArrayList<Radio> dataset, Context context) {
         this.dataset = dataset;
         this.context = context;
-        this.radioPlayer = radioPlayer;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder  {
@@ -42,9 +41,15 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!radioPlayer.isPlaying())
-                    {
-                        if(radioPlayer.start(channelUrl))
+                   // if(!radioPlayer.isPlaying())
+                   // {
+                        Intent i = new Intent(context, RadioPlayer.class);
+                        i.setAction(ACTION_PLAY);
+                        Uri uri = Uri.parse(channelUrl);
+                        i.setData(uri);
+                        i.putExtra("CHANNEL_NAME", channelName);
+                        context.startService(i);
+                        /*if(radioPlayer.start(channelUrl))
                         {
                             new AlertDialog.Builder(context).setTitle("Radyo Yayını")
                                     .setMessage(channelName)
@@ -76,9 +81,9 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
                                     })
                                     .show();
 
-                        }
+                        }*/
 
-                    }
+                   // }
                 }
             });
         }
