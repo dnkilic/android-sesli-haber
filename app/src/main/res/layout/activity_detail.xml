@@ -24,7 +24,7 @@
 
         </WebView>
 
-        <com.google.android.gms.ads.AdView android:id="@+id/adView"
+      <!--  <com.google.android.gms.ads.AdView android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             ads:adUnitId="ca-app-pub-6884033796443199/447781xxxx"
@@ -32,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
-            android:layout_weight="1"/>
+            android:layout_weight="1"/>-->
     </LinearLayout>
 
 

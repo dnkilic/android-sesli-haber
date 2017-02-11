@@ -10,6 +10,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -21,14 +22,16 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'za.co.riggaroo:materialhelptutorial:1.+'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.android.support:design:25.1.1'
+    compile 'com.android.support:recyclerview-v7:25.1.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.android.support:cardview-v7:25.1.0'
+    compile 'com.android.support:cardview-v7:25.1.1'
     compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.google.android.gms:play-services-appindexing:9.0.0'
+    compile 'com.google.firebase:firebase-core:10.0.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
-    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

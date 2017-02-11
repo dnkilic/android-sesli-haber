@@ -53,6 +53,8 @@ import com.dnkilic.seslihaber.view.Dialog;
 import com.dnkilic.seslihaber.view.DialogAdapter;
 import com.dnkilic.seslihaber.view.NewsAdapter;
 import com.dnkilic.seslihaber.view.RadioAdapter;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
@@ -68,11 +70,14 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private static int currentPosition;
     private Menu menu;
     public static HashMap<Integer, ArrayList<News>> newsMap = new HashMap<>();
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         loadTutorial();
 

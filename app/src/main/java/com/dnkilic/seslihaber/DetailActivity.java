@@ -7,8 +7,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -34,9 +32,9 @@ public class DetailActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         wvNews.loadUrl(url);
 
-        AdView adView = (AdView) this.findViewById(R.id.adView);
+        /*AdView adView = (AdView) this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        adView.loadAd(adRequest);*/
     }
 
     @Override
