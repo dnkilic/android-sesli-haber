@@ -2,32 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:title="Hakkında"
         android:id="@+id/about"
         android:orderInCategory="3"
         app:showAsAction="always"
-        android:onClick="onOptionsItemSelected"
         android:icon="@mipmap/ic_fingerprint" />
 
     <item
+        android:title="Dinle ve Durdur"
         android:id="@+id/speakerButton"
         android:orderInCategory="0"
         app:showAsAction="always"
-        android:onClick="onOptionsItemSelected"
-        android:icon="@mipmap/ic_speaker_on" />
+        android:icon="@mipmap/ic_speaker_play" />
     <item
+        android:title="Ayarlar"
         android:id="@+id/settings"
         app:showAsAction="always"
         android:orderInCategory="2"
-        android:icon="@mipmap/ic_settings"
-        />
+        android:icon="@mipmap/ic_settings" />
 
     <item
+        android:title="Mikrofon"
         android:id="@+id/microphoneButton"
         app:showAsAction="always"
         android:orderInCategory="1"
-        android:onClick="onOptionsItemSelected"
-        android:icon="@mipmap/ic_microphone"
-        />
-
-
+        android:icon="@mipmap/ic_microphone" />
 </menu>

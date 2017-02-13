@@ -39,8 +39,9 @@
 
         <service
             android:name=".player.RadioPlayer"
+            android:process=":RadioPlayer"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
     </application>
 
 </manifest>

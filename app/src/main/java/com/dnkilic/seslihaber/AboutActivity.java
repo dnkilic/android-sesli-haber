@@ -3,6 +3,7 @@ package com.dnkilic.seslihaber;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ public class AboutActivity extends Activity {
     private static Typeface typeface;
 
     static final ButterKnife.Action<View> TYPEFACE = new ButterKnife.Action<View>() {
-        @Override public void apply(View view, int index) {
+        @Override public void apply(@NonNull View view, int index) {
             TextView tv = (TextView) view;
             tv.setTypeface(typeface);
             tv.setText(tv.getText().toString().toLowerCase());

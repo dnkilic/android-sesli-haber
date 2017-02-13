@@ -1,6 +1,7 @@
 package com.dnkilic.seslihaber;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,6 +19,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.dnkilic.seslihaber.data.News;
+import com.google.firebase.crash.FirebaseCrash;
 
 public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
 
@@ -62,18 +64,26 @@ public class RssFeedParser extends AsyncTask<String, Void, ArrayList<News>> {
                 newsList.add(news);
             }
         }  catch (MalformedURLException e) {
+            FirebaseCrash.logcat(Log.ERROR, "Sesli Haber", "doInBackground");
+            FirebaseCrash.report(e);
             error = true;
             errorMessage = "Yasal bir protokol bulunamadı, hatalı bir URL oluştu!";
             e.printStackTrace();
         } catch (IOException e) {
+            FirebaseCrash.logcat(Log.ERROR, "Sesli Haber", "doInBackground");
+            FirebaseCrash.report(e);
             error = true;
             errorMessage = "Lütfen internet bağlantınızı kontrol ediniz! ";
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
+            FirebaseCrash.logcat(Log.ERROR, "Sesli Haber", "doInBackground");
+            FirebaseCrash.report(e);
             error = true;
             errorMessage = "Yapılandırma hatası tespit edildi.Lütfen daha sonra tekrar deneyiniz!";
             e.printStackTrace();
         } catch (SAXException e) {
+            FirebaseCrash.logcat(Log.ERROR, "Sesli Haber", "doInBackground");
+            FirebaseCrash.report(e);
             error = true;
             errorMessage = "Genel bir SAX hatası tespit edildi. Lütfen daha sonra tekrar deneyiniz!";
             e.printStackTrace();

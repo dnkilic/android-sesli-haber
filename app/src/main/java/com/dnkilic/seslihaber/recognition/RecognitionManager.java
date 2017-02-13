@@ -38,8 +38,9 @@ public class RecognitionManager implements  LanguageAvailabilityListener{
         if(availability)
         {
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "tr");
-            intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, "tr");
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "tr");
+            //  intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "tr");
+            //   intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, "tr");
 
             intent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{"tr"});
 

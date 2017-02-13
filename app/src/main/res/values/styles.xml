@@ -39,4 +39,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AppCompatProgressDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAboutPrimary</item>
+        <item name="android:textColorPrimary">@color/colorDetailAccent</item>
+    </style>
+
 </resources>

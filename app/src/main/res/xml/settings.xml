@@ -6,7 +6,7 @@
         android:defaultValue="true"
         android:summaryOn="Intro Açık"
         android:summaryOff="Intro Kapalı"
-        android:title="Haber Intro"
+        android:title="Haber Intro Sesi"
         android:key="prefIntro" />
 
 </PreferenceScreen>

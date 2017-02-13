@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView"
                     android:gravity="center"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:layout_weight="0.07"
                     android:textStyle="normal|bold"
                     android:textAlignment="center"
@@ -43,6 +43,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:importantForAccessibility="no"
                         android:src="@drawable/ic_company"
                         android:background="@null"
                         android:id="@+id/companyLogo" />

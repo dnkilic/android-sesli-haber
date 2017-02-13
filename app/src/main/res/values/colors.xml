@@ -19,9 +19,4 @@
     <color name="slide_3">#D53D25</color>
     <color name="slide_4">#eac100</color>
 
-    <color name="holo_green_light">#00ea00</color>
-    <color name="holo_blue_bright">#04fde9</color>
-    <color name="holo_orange_light">#fd8504</color>
-    <color name="holo_red_light">#f4040c</color>
-
 </resources>

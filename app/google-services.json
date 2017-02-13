@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "352349936665",
+    "firebase_url": "https://sesli-haber-5c32f.firebaseio.com",
+    "project_id": "sesli-haber-5c32f",
+    "storage_bucket": "sesli-haber-5c32f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352349936665:android:6f7b23dddb80531b",
+        "android_client_info": {
+          "package_name": "com.dnkilic.seslihaber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352349936665-o332egcrfn1vhgkue7dkpgf0iuh7sgqc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dnkilic.seslihaber",
+            "certificate_hash": "AE1C4EA3D0998CA10277E6B8C86624128A94B62E"
+          }
+        },
+        {
+          "client_id": "352349936665-47tivctvfkvm2782jcrh59bgp116susf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRIBi878HuffPPTmEWVR_GYaDj6R_n-g0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352349936665-47tivctvfkvm2782jcrh59bgp116susf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,9 @@
 package com.dnkilic.seslihaber;
 
 import android.text.format.DateFormat;
+import android.util.Log;
+
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +20,8 @@ public class DateParser {
         try {
             date = format.parse(pubDate);
         } catch (ParseException e) {
+            FirebaseCrash.logcat(Log.ERROR, "Sesli Haber", "date parser");
+            FirebaseCrash.report(e);
             e.printStackTrace();
         }
 

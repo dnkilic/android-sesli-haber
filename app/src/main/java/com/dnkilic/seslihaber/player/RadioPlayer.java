@@ -11,20 +11,27 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.dnkilic.seslihaber.MainActivity;
 import com.dnkilic.seslihaber.R;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.io.IOException;
 
-public class RadioPlayer extends Service implements MediaPlayer.OnPreparedListener{
+public class RadioPlayer extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
 
     public static final String ACTION_PLAY = "play";
     public static final String BROADCAST_PLAYBACK_STOP = "stop";
 
     private MediaPlayer mediaPlayer;
     private String channelName;
+    private Messenger messageHandler;
 
     final BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
     {
@@ -55,20 +62,38 @@ public class RadioPlayer extends Service implements MediaPlayer.OnPreparedListen
     @Override
     public void onDestroy() {
         super.onDestroy();
+        sendMessage();
         unregisterReceiver(broadcastReceiver);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        if(intent.getAction().equals(ACTION_PLAY))
+        if(intent != null)
         {
-            channelName = intent.getStringExtra("CHANNEL_NAME");
-            Uri uri = intent.getData();
-            start(uri.toString());
+            if(intent.getAction() != null && intent.getAction().equals(ACTION_PLAY))
+            {
+                messageHandler = (Messenger) intent.getExtras().get("MESSENGER");
+                channelName = intent.getStringExtra("CHANNEL_NAME");
+                Uri uri = intent.getData();
+                start(uri.toString());
+            }
         }
 
         return START_STICKY;
+    }
+
+
+    public void sendMessage() {
+        Message message = Message.obtain();
+
+        message.arg1 = 1;
+
+        try {
+            messageHandler.send(message);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -86,6 +111,8 @@ public class RadioPlayer extends Service implements MediaPlayer.OnPreparedListen
         }
         catch (Exception e)
         {
+            FirebaseCrash.logcat(Log.ERROR, "Sesli Haber", "radio player");
+            FirebaseCrash.report(e);
             e.printStackTrace();
             return false;
         }
@@ -93,13 +120,22 @@ public class RadioPlayer extends Service implements MediaPlayer.OnPreparedListen
     }
 
     public boolean start(String channelUrl) {
+
         try {
+
+            if(mediaPlayer != null)
+            {
+                stop();
+            }
+
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setDataSource(channelUrl);
             mediaPlayer.setOnPreparedListener(this);
             mediaPlayer.prepare();
         } catch (IOException e) {
+            FirebaseCrash.logcat(Log.ERROR, "Sesli Haber", "radio player");
+            FirebaseCrash.report(e);
             e.printStackTrace();
             return false;
         }
@@ -115,6 +151,8 @@ public class RadioPlayer extends Service implements MediaPlayer.OnPreparedListen
 
     @Override
     public void onPrepared(MediaPlayer mp) {
+        sendMessage();
+
         mp.start();
 
         Intent resultIntent = new Intent(this, MainActivity.class);
@@ -129,13 +167,19 @@ public class RadioPlayer extends Service implements MediaPlayer.OnPreparedListen
         Notification notification =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("Radyo")
+                        .setContentTitle("Sesli Haber")
                         .setContentText(channelName)
                         .setColor(getResources().getColor(R.color.colorAboutPrimary))
                         .setContentIntent(resultPendingIntent)
-                        .addAction(R.mipmap.ic_notification_player_stop, "Stop", makePendingIntent(BROADCAST_PLAYBACK_STOP))
+                        .addAction(R.mipmap.ic_notification_player_stop, "Durdur", makePendingIntent(BROADCAST_PLAYBACK_STOP))
                         .build();
 
         startForeground(1903, notification);
+    }
+
+    @Override
+    public boolean onError(MediaPlayer mp, int what, int extra) {
+        sendMessage();
+        return false;
     }
 }

@@ -2,16 +2,19 @@ package com.dnkilic.seslihaber;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -54,6 +57,7 @@ import com.dnkilic.seslihaber.view.DialogAdapter;
 import com.dnkilic.seslihaber.view.NewsAdapter;
 import com.dnkilic.seslihaber.view.RadioAdapter;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 
 import za.co.riggaroo.materialhelptutorial.TutorialItem;
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
@@ -71,11 +75,16 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private Menu menu;
     public static HashMap<Integer, ArrayList<News>> newsMap = new HashMap<>();
     private FirebaseAnalytics mFirebaseAnalytics;
+    private Activity act;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseCrash.log("Activity created : ");
+
+        act = this;
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -106,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
                     if(menu != null)
                     {
-                        menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+                        menu.getItem(0).setIcon(R.mipmap.ic_speaker_play);
                     }
                 }
 
@@ -169,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         {
             speakerManager.stop();
             speakerManager.shutdown();
-            menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+            menu.getItem(0).setIcon(R.mipmap.ic_speaker_play);
         }
 
         if(recognitionManager != null)
@@ -188,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
             if(menu != null)
             {
-                menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+                menu.getItem(0).setIcon(R.mipmap.ic_speaker_play);
             }
         }
 
@@ -206,11 +215,69 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        try
+        {
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    final View speakerButton = act.findViewById(R.id.speakerButton);
+                    if(speakerButton != null)
+                    {
+                        speakerButton.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                return false;
+                            }
+                        });
+
+                    }
+                    final View about = act.findViewById(R.id.about);
+                    if(about != null)
+                    {
+                        about.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                return false;
+                            }
+                        });
+
+                    }
+                    final View settings = act.findViewById(R.id.settings);
+                    if(settings != null)
+                    {
+                        settings.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                return false;
+                            }
+                        });
+
+                    }
+                    final View microphoneButton = act.findViewById(R.id.microphoneButton);
+                    if(microphoneButton != null)
+                    {
+                        microphoneButton.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                return false;
+                            }
+                        });
+
+                    }
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            FirebaseCrash.report(e);
+            e.printStackTrace();
+        }
+
         this.menu = menu;
         return true;
     }
 
-    @AskPermission(RECORD_AUDIO)
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         if(item.getItemId()== R.id.about) {
@@ -219,9 +286,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         } else if(item.getItemId() == R.id.speakerButton){
             if(speakerManager.isSpeaking()){
                 speakerManager.stop();
-                menu.getItem(0).setIcon(R.mipmap.ic_speaker_on);
+                menu.getItem(0).setIcon(R.mipmap.ic_speaker_play);
             } else {
-                menu.getItem(0).setIcon(R.mipmap.ic_speaker_off);
 
                 ArrayList<News> titleList = null;
 
@@ -236,6 +302,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
                 if(titleList != null && !titleList.isEmpty())
                 {
+                    menu.getItem(0).setIcon(R.mipmap.ic_speaker_stop);
                     SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     boolean isIntroEnabled = sharedPref.getBoolean("prefIntro", true);
 
@@ -245,9 +312,15 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
                     for(News i: titleList){
                         String title = i.getTitle();
-                        speakerManager.speak(title);
-                        speakerManager.play("[beep]");
+                        if(speakerManager.speak(title) == TextToSpeech.SUCCESS)
+                        {
+                            speakerManager.play("[beep]");
+                        }
                     }
+                }
+                else
+                {
+                    Toast.makeText(this, "Seslendirilecek haber bulunamadı.", Toast.LENGTH_SHORT).show();
                 }
             }
             return true;
@@ -256,38 +329,59 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             startActivity(intent);
         }
         else if (item.getItemId()==R.id.microphoneButton){
-            recognitionManager.start();
+            startRecognition();
+
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onReadyForSpeech(Bundle params) {
-
+    @AskPermission(RECORD_AUDIO)
+    private void startRecognition() {
+        recognitionManager.start();
     }
 
     @Override
-    public void onBeginningOfSpeech() {
-
-    }
+    public void onReadyForSpeech(Bundle params) {}
 
     @Override
-    public void onRmsChanged(float rmsdB) {
-
-    }
+    public void onBeginningOfSpeech() {}
 
     @Override
-    public void onBufferReceived(byte[] buffer) {
-
-    }
+    public void onRmsChanged(float rmsdB) {}
 
     @Override
-    public void onEndOfSpeech() {
-
-    }
+    public void onBufferReceived(byte[] buffer) {}
 
     @Override
-    public void onError(int error) {}
+    public void onEndOfSpeech() {}
+
+    @Override
+    public void onError(int error) {
+
+        switch (error)
+        {
+            case SpeechRecognizer.ERROR_AUDIO:
+                break;
+            case SpeechRecognizer.ERROR_CLIENT:
+                break;
+            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                break;
+            case SpeechRecognizer.ERROR_NETWORK:
+                break;
+            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+                break;
+            case SpeechRecognizer.ERROR_NO_MATCH:
+                break;
+            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+                break;
+            case SpeechRecognizer.ERROR_SERVER:
+                break;
+            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                break;
+        }
+
+        Toast.makeText(this, "Ses tanıma yapılırken bir hata oluştu. Hata kodu : " + error, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onResults(Bundle results) {
@@ -295,7 +389,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         if(textMatchList != null && !textMatchList.isEmpty())
         {
-            String result = textMatchList.get(0);
+            String result = textMatchList.get(0).toLowerCase();
 
             if(result.contains("güncel")) {
                 mViewPager.setCurrentItem(0);
@@ -325,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 mViewPager.setCurrentItem(12);
             }
 
-            Toast.makeText(this, textMatchList.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tanıma sonucu : " + textMatchList.get(0), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -342,8 +436,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     @Override
     public void onShowPermissionRationale(List<String> permissionList, final RuntimePermissionRequest permissionRequest) {
 
-        new AlertDialog.Builder(this).setTitle("İzine İhtiyaç Var!")
-                .setMessage("Ses tanıma yapabilmek için RECORD_AUDIO iznine ihtiyacım var.")
+        new AlertDialog.Builder(this, R.style.AppCompatProgressDialogStyle).setTitle("İzine İhtiyaç Var!")
+                .setMessage("Ses tanıma yapabilmek için Mikrofon iznine ihtiyacım var.")
                 .setCancelable(true)
                 .setNegativeButton("Hayır Teşekkkürler", new DialogInterface.OnClickListener() {
                     @Override
@@ -362,8 +456,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     @Override
     public void onPermissionDenied(List<DeniedPermission> deniedPermissionList) {
-        new AlertDialog.Builder(this).setTitle("Ayarlara Giderek İzin Ver")
-                .setMessage("Ses tanıma yapabilmek için RECORD_AUDIO iznine ihtiyacım var.")
+        new AlertDialog.Builder(this, R.style.AppCompatProgressDialogStyle).setTitle("Ayarlara Giderek İzin Ver")
+                .setMessage("Ses tanıma yapabilmek için Mikrofon iznine ihtiyacım var.")
                 .setCancelable(true)
                 .setPositiveButton("TAMAM", new DialogInterface.OnClickListener() {
                     @Override
@@ -377,7 +471,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                         dialog.dismiss();
                     }
                 }).show();
-
     }
 
     public static class PlaceholderFragment extends Fragment implements NewsResultListener, SwipeRefreshLayout.OnRefreshListener {
@@ -422,7 +515,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
             adapter = new NewsAdapter(dataset, getActivity());
             recyclerView.setAdapter(adapter);
-            progressBar = (ProgressBar) rootView.findViewById(R.id.pbQueryNews);
+            progressBar  = (ProgressBar) rootView.findViewById(R.id.pbQueryNews);
             progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
             showProgress(true);
@@ -491,10 +584,10 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         private ArrayList<Radio> insertRadioChannels() {
             ArrayList<Radio> radioList = new ArrayList<>();
-            radioList.add(new Radio("TRT RADYO","http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"));
-            radioList.add(new Radio("HALK TV HABER","http://live4.radyotvonline.com:6670/"));
-            radioList.add(new Radio("RADYO HABER","http://46.165.233.175:4118/"));
-            radioList.add(new Radio("TRT RADYO HABER","http://46.20.3.210/listen.pls"));
+            radioList.add(new Radio("Trt Radyo","http://trtcanlifm-lh.akamaihd.net/i/RADYO1_1@182345/master.m3u8"));
+            radioList.add(new Radio("Halk Tv Haber","http://live4.radyotvonline.com:6670/"));
+            radioList.add(new Radio("Radyo Haber","http://46.165.233.175:4118/"));
+            radioList.add(new Radio("Trt Radyo Haber","http://46.20.3.210/listen.pls"));
             return radioList;
         }
 
